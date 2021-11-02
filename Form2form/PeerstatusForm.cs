@@ -13,7 +13,7 @@ namespace Pinger
 {
     public partial class PeerstatusForm : Form
     {
-        int Capacity = 50;// глубина логгирования состояния узла
+        int CAPACITY = 50;// глубина логгирования состояния узла
         public List<string> Results = new List<string>(20);
         public bool wasOffline = false;
         public DateTime Alarmtime = DateTime.Now;
@@ -73,11 +73,11 @@ namespace Pinger
                 {
                     PingSender.SendAsync(ip, hostname);
                 }
-                catch (System.InvalidOperationException)
+                catch (InvalidOperationException)
                 {
                     //  MessageBox.Show("Упс...");
                 }
-                catch (System.NullReferenceException)
+                catch (NullReferenceException)
                 {
                     //  MessageBox.Show("Упс...");
                 }
@@ -104,11 +104,11 @@ namespace Pinger
                             {
                                 Alarmed = DateTime.Now - Alarmtime;
                                 wasOffline = false;
-                                if (Results.Count == Capacity)
+                                if (Results.Count == CAPACITY)
                                 {
                                     Results.RemoveAt(0);
                                 }       
-                                Results.Add($"{data[0]} \t {e.Reply.Address.ToString()} \t {e.Reply.Status.ToString()} \t\t {DateTime.Now.ToShortDateString()} {DateTime.Now.ToLongTimeString()} ( {Alarmed.Days} д. {Alarmed.Hours} ч. {Alarmed.Minutes} м. {Alarmed.Seconds} с.)");
+                                Results.Add($"{data[0]} \t {e.Reply.Address} \t {e.Reply.Status} \t\t {DateTime.Now.ToShortDateString()} {DateTime.Now.ToLongTimeString()} ( {Alarmed.Days} д. {Alarmed.Hours} ч. {Alarmed.Minutes} м. {Alarmed.Seconds} с.)");
                                 if (Alarmed.Days == 0 && Alarmed.Hours == 0 && Alarmed.Minutes == 0 && Alarmed.Seconds == 0)
                                 {
                                     Results.RemoveAt(Results.Count - 1); //удаляем элементы после "ложной тревоги"
@@ -136,12 +136,12 @@ namespace Pinger
                             {
                                 if (!wasOffline)
                                 {
-                                    if (Results.Count == Capacity)
+                                    if (Results.Count == CAPACITY)
                                     {
                                         Results.RemoveAt(0);
                                     }
                                     Alarmtime = DateTime.Now;
-                                    Results.Add($"{data[0]} \t {data[1]} \t {e.Reply.Status.ToString()} \t {Alarmtime.ToString()}");
+                                    Results.Add($"{data[0]} \t {data[1]} \t {e.Reply.Status} \t {Alarmtime}");
                                     wasOffline = true;
                                 }
                                 MainForm.failurePings[Array.IndexOf(this.ParentForm.MdiChildren, this)] = 0;
@@ -157,12 +157,12 @@ namespace Pinger
                             {
                                 if (!wasOffline)
                                 {
-                                    if (Results.Count == Capacity)
+                                    if (Results.Count == CAPACITY)
                                     {
                                         Results.RemoveAt(0);
                                     }
                                     Alarmtime = DateTime.Now;
-                                    Results.Add($"{data[0]} \t {data[1]} \t {e.Reply.Status.ToString()} \t {Alarmtime.ToString()}");
+                                    Results.Add($"{data[0]} \t {data[1]} \t {e.Reply.Status} \t {Alarmtime}");
                                     wasOffline = true;
                                 }
                                 MainForm.failurePings[Array.IndexOf(this.ParentForm.MdiChildren, this)] = 0;
@@ -178,12 +178,12 @@ namespace Pinger
                             {
                                 if (!wasOffline)
                                 {
-                                    if (Results.Count == Capacity)
+                                    if (Results.Count == CAPACITY)
                                     {
                                         Results.RemoveAt(0);
                                     }
                                     Alarmtime = DateTime.Now;
-                                    Results.Add($"{data[0]} \t {data[1]} \t {e.Reply.Status.ToString()} \t {Alarmtime.ToString()}");
+                                    Results.Add($"{data[0]} \t {data[1]} \t {e.Reply.Status} \t {Alarmtime}");
                                     wasOffline = true;
                                 }
                                 MainForm.failurePings[Array.IndexOf(this.ParentForm.MdiChildren, this)] = 0;
@@ -199,12 +199,12 @@ namespace Pinger
                             {
                                 if (!wasOffline)
                                 {
-                                    if (Results.Count == Capacity)
+                                    if (Results.Count == CAPACITY)
                                     {
                                         Results.RemoveAt(0);
                                     }
                                     Alarmtime = DateTime.Now;
-                                    Results.Add($"{data[0]} \t {data[1]} \t {e.Reply.Status.ToString()} \t {Alarmtime.ToString()}");
+                                    Results.Add($"{data[0]} \t {data[1]} \t {e.Reply.Status} \t {Alarmtime}");
                                     wasOffline = true;
                                 }
                                 MainForm.failurePings[Array.IndexOf(this.ParentForm.MdiChildren, this)] = 0;
@@ -220,12 +220,12 @@ namespace Pinger
                             {
                                 if (!wasOffline)
                                 {
-                                    if (Results.Count == Capacity)
+                                    if (Results.Count == CAPACITY)
                                     {
                                         Results.RemoveAt(0);
                                     }
                                     Alarmtime = DateTime.Now;
-                                    Results.Add($"{data[0]} \t {data[1]} \t {e.Reply.Status.ToString()} \t {Alarmtime.ToString()}");
+                                    Results.Add($"{data[0]} \t {data[1]} \t {e.Reply.Status} \t {Alarmtime}");
                                     wasOffline = true;
                                 }
                                 MainForm.failurePings[Array.IndexOf(this.ParentForm.MdiChildren, this)] = 0;
@@ -241,12 +241,12 @@ namespace Pinger
                             {
                                 if (!wasOffline)
                                 {
-                                    if (Results.Count == Capacity)
+                                    if (Results.Count == CAPACITY)
                                     {
                                         Results.RemoveAt(0);
                                     }
                                     Alarmtime = DateTime.Now;
-                                    Results.Add($"{data[0]} \t {data[1]} \t {e.Reply.Status.ToString()} \t {Alarmtime.ToString()}");
+                                    Results.Add($"{data[0]} \t {data[1]} \t {e.Reply.Status} \t {Alarmtime}");
                                     wasOffline = true;
                                 }
                                 MainForm.failurePings[Array.IndexOf(this.ParentForm.MdiChildren, this)] = 0;
@@ -262,12 +262,12 @@ namespace Pinger
                             {
                                 if (!wasOffline)
                                 {
-                                    if (Results.Count == Capacity)
+                                    if (Results.Count == CAPACITY)
                                     {
                                         Results.RemoveAt(0);
                                     }
                                     Alarmtime = DateTime.Now;
-                                    Results.Add($"{data[0]} \t {data[1]} \t {e.Reply.Status.ToString()} \t {Alarmtime.ToString()}");
+                                    Results.Add($"{data[0]} \t {data[1]} \t {e.Reply.Status} \t {Alarmtime}");
                                     wasOffline = true;
                                 }
                                 MainForm.failurePings[Array.IndexOf(this.ParentForm.MdiChildren, this)] = 0;
