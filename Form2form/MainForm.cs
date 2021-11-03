@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
 
 namespace Pinger
 {
@@ -27,7 +28,7 @@ namespace Pinger
         {
             List<string> hosts = FileHandler.OpenFile("peers.txt");   //считать содержимое файла с узлами  
             List<string> locations = FileHandler.OpenFile("locations.txt");
-            if (this.MdiChildren.Count() != 0) //закрыть все дочерние (если есть)
+            if (MdiChildren.Count() != 0) //закрыть все дочерние (если есть)
             {
                 do
                 {
@@ -36,19 +37,16 @@ namespace Pinger
                 while (MdiChildren.Count() > 0);
             }
             hosts.Sort();
+
             for (int i = 0; i < hosts.Count; i++)
             {
                 PeerstatusForm form2 = new PeerstatusForm();
                 form2.MdiParent = this;
                 form2.Text = hosts[i];
-                //  form2.Location = new Point(int.Parse(locations[0]), int.Parse(locations[1])); 
-
-
-                this.MdiChildren[i].Show();
-                this.MdiChildren[i].Location = new Point(Convert.ToInt32(locations[i].Split(',')[0]), Convert.ToInt32(locations[i].Split(',')[1]));
-                
-                this.Refresh();
-                failurePings = new int[this.MdiChildren.Length];
+                MdiChildren[i].Show();
+                MdiChildren[i].Location = new Point(Convert.ToInt32(locations[i].Split(',')[0]), Convert.ToInt32(locations[i].Split(',')[1]));
+                Refresh();
+                failurePings = new int[MdiChildren.Length];
             }
         }
         public void sortVertical()
