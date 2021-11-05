@@ -15,78 +15,50 @@ namespace Pinger
     public partial class MainForm : Form
     {
         public static int[] failurePings;//массив, выделенный для хранения количества "неудачных" попыток пинга
+
+        public static List<int> failures = new List<int>();
+
+        public static List<int> z_order = new List<int>();
+
         public MainForm()
         {
             InitializeComponent();
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Maximized;
-            AddPeers();
-        }
+
         private void AddPeers()
         {
+            if (!File.Exists("peers.txt") || !File.Exists("locations.txt"))
+            {
+                MessageBox.Show("В каталоге с программой отсутствуют необходимые для работы файлы peers.txt или locations.txt. Приложение будет закрыто.", "Ошибка - отсутствуют файлы...");
+                Application.Exit();
+            }
+            this.WindowState = FormWindowState.Maximized;
             List<string> hosts = FileHandler.OpenFile("peers.txt");   //считать содержимое файла с узлами  
             List<string> locations = FileHandler.OpenFile("locations.txt");
-            if (MdiChildren.Count() != 0) //закрыть все дочерние (если есть)
-            {
-                do
-                {
-                    MdiChildren[0].Close();
-                }
-                while (MdiChildren.Count() > 0);
-            }
             hosts.Sort();
+
+           
 
             for (int i = 0; i < hosts.Count; i++)
             {
-                PeerstatusForm form2 = new PeerstatusForm();
-                form2.MdiParent = this;
-                form2.Text = hosts[i];
-                MdiChildren[i].Show();
-                MdiChildren[i].Location = new Point(Convert.ToInt32(locations[i].Split(',')[0]), Convert.ToInt32(locations[i].Split(',')[1]));
-                Refresh();
-                failurePings = new int[MdiChildren.Length];
+                PeerControl pc = new PeerControl();
+                pc.Location = new Point(Convert.ToInt32(locations[i].Split(',')[0]), Convert.ToInt32(locations[i].Split(',')[1]));
+                pc.Tag = hosts[i];
+                this.Controls.Add(pc);
+                z_order.Add(Controls.GetChildIndex(pc));
+  
+            }
+            for (int i = 0; i < this.Controls.Count; i++)
+            {
+                failures.Add(0);
             }
         }
-        public void sortVertical()
+
+
+        private void Form1_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < MdiChildren.Count(); i++)
-            {
-                MdiChildren[i].FormBorderStyle = FormBorderStyle.FixedSingle;
-            }
-            LayoutMdi(MdiLayout.TileVertical);
-            for (int i = 0; i < MdiChildren.Count(); i++)
-            {
-                MdiChildren[i].FormBorderStyle = FormBorderStyle.None;
-                MdiChildren[i].Size = new Size(130, 26);
-            }
-        }
-        public void sortHorizontal()
-        {
-            for (int i = 0; i < MdiChildren.Count(); i++)
-            {
-                MdiChildren[i].FormBorderStyle = FormBorderStyle.FixedSingle;
-            }
-            LayoutMdi(MdiLayout.TileHorizontal);
-            for (int i = 0; i < MdiChildren.Count(); i++)
-            {
-                MdiChildren[i].FormBorderStyle = FormBorderStyle.None;
-                MdiChildren[i].Size = new Size(130, 26);
-            }
-        }
-        public string offlineInfo()
-        {
-            int offline = 0;
-            for (int i = 0; i < this.MdiChildren.Length; i++)
-            {
-                if (((PeerstatusForm)this.MdiChildren[i]).PingResult.BackColor == Color.Red)
-                {
-                    offline++;
-                }
-            }
-           return "Мониторинг сетевого оборудования. \r\nОффлайн - " + offline + "/" + this.MdiChildren.Length;          
-        }
+            AddPeers();
+        }             
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
             if (this.WindowState == FormWindowState.Normal || this.WindowState == FormWindowState.Maximized)
@@ -97,38 +69,34 @@ namespace Pinger
             else
             {
                 this.Visible = true; this.WindowState = FormWindowState.Maximized;
-                this.Text = offlineInfo();
             }
         }
-        private void notifyIcon1_MouseMove(object sender, MouseEventArgs e)
-        {
-            notifyIcon1.Text = offlineInfo();
-        }
+      
+        
         private void загрузитьКоординатыToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            StreamReader reader = new StreamReader("locations.txt");
-            List<Point> locations = new List<Point>();
-            for (int i = 0; i < this.MdiChildren.Count(); i++)
-            {
-                string[] coords = reader.ReadLine().Split(',');
+        {          
+            List<string> locations = FileHandler.OpenFile("locations.txt");
+            for (int i = 0; i < Controls.Count; i++)
+            {   
+                string[] coords = locations[i].Split(',');
                 Point point = new Point(int.Parse(coords[0]), int.Parse(coords[1]));
-                this.MdiChildren[i].Location = point;
-            }
-            reader.Close();
+                Controls[i].Location = point;  
+            }    
         }
         private void сохранитьРасположениеЭлементовToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StreamWriter Writer = new StreamWriter("locations.txt");
             List<Point> locations = new List<Point>();
-            for (int i = 0; i < this.MdiChildren.Count(); i++)
+            Control[] controls = this.Controls.Find("PeerControl", true);
+            for (int i = 0; i < controls.Length; i++)
             {
-                Writer.WriteLine(this.MdiChildren[i].Location.X + "," + this.MdiChildren[i].Location.Y);
+                Writer.WriteLine(controls[i].Location.X + "," + controls[i].Location.Y);
             }
             Writer.Close();
         }
         private void перечитатьУзлыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddPeers();
+            Application.Restart();
         }
         private void списокУзловToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -153,9 +121,11 @@ namespace Pinger
         }
         private void справкаToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            AboutForm About = new AboutForm();
-            About.StartPosition = FormStartPosition.CenterScreen;
-            About.ShowDialog();
+            About about = new About();
+            about.StartPosition = FormStartPosition.CenterScreen;
+            about.ShowDialog();
+
+
         }
         private void координатыToolStripMenuItem_Click(object sender, EventArgs e)
         {

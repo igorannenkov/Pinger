@@ -117,13 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>104, 17</value>
-  </metadata>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>259, 17</value>
-  </metadata>
+  <data name="textBoxDescription.Text" xml:space="preserve">
+    <value>Приложение предназначено для мониторинга доступности сетевого оборудования посредством отправки ICMP пакетов. Статус моментально отображается на форме.
+Доступно:
+ - ведение истории онлайн/оффлайн/времени простоя, отображение текущего время задержки (мс). 
+ - мониторинг отдельного узла (обмен пакетами через консоль). Использовать Ctrl + Pause (промежуточная статистика), Pause (приостановить), Ctrl + C (закрыть). 
+ - чтение информации о наблюдаемых устройствах производится из файла peers.txt, координаты визуального расположения узлов на форме хранятся в файле locations.txt. Редактирование производится либо из программы, либо и из файла в папке с программой. 
+ - после внесения изменений программу следует перезапустить или выбрать пункт "Перечитать из файла" в контекстном меню.
+
+05.11.2021</value>
+  </data>
 </root>
