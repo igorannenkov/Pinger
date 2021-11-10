@@ -24,7 +24,11 @@ namespace Pinger
         public DateTime Alarmtime = DateTime.Now;
         TimeSpan Alarmed = new TimeSpan();
         Ping PingSender = new Ping();
+<<<<<<< HEAD
         Point prevMousePosition;     
+=======
+        Point prevMousePosition;      
+>>>>>>> 4ec8652abfcff9da5f5b6d0adcac17bac1479ef0
         private void PeerControl_Load(object sender, EventArgs e)
         {
             string[] data = this.Tag.ToString().Split(';');
@@ -314,7 +318,11 @@ namespace Pinger
             {
                 prevMousePosition = Control.MousePosition;
                 this.Cursor = Cursors.SizeAll;
+<<<<<<< HEAD
                 this.BringToFront();     
+=======
+                this.BringToFront();               
+>>>>>>> 4ec8652abfcff9da5f5b6d0adcac17bac1479ef0
             }
         }
         private void PingResult_MouseMove(object sender, MouseEventArgs e)
@@ -342,7 +350,11 @@ namespace Pinger
                 prevMousePosition = Control.MousePosition;
                 this.Cursor = Cursors.SizeAll;
                 this.BringToFront();
+<<<<<<< HEAD
             }     
+=======
+            }  
+>>>>>>> 4ec8652abfcff9da5f5b6d0adcac17bac1479ef0
         }
         private void peer_name_MouseUp(object sender, MouseEventArgs e)
         {

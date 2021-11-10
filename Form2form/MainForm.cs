@@ -31,7 +31,11 @@ namespace Pinger
             this.WindowState = FormWindowState.Maximized;
             List<string> hosts = FileHandler.OpenFile("peers.txt");   //считать содержимое файла с узлами  
             List<string> locations = FileHandler.OpenFile("locations.txt");
+<<<<<<< HEAD
             hosts.Sort();       
+=======
+            hosts.Sort();        
+>>>>>>> 4ec8652abfcff9da5f5b6d0adcac17bac1479ef0
             for (int i = 0; i < hosts.Count; i++)
             {
                 PeerControl pc = new PeerControl();
@@ -59,13 +63,19 @@ namespace Pinger
             }
             else
             {
-                this.Visible = true; this.WindowState = FormWindowState.Maximized;
+                this.Visible = true; 
+                this.WindowState = FormWindowState.Maximized;
             }
+<<<<<<< HEAD
         }              
+=======
+        }     
+>>>>>>> 4ec8652abfcff9da5f5b6d0adcac17bac1479ef0
         private void загрузитьКоординатыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             List<string> labels = new List<string>(Controls.Count);
 
+<<<<<<< HEAD
             for (int i = 0; i < Controls.Count; i++)
             {
                 labels.Add(Controls[i].Tag.ToString());
@@ -74,6 +84,16 @@ namespace Pinger
             Control[] myControls = new Control[Controls.Count];
             for (int i = 0; i < Controls.Count; i++)
             {
+=======
+            for (int i = 0; i < Controls.Count; i++)
+            {
+                labels.Add(Controls[i].Tag.ToString());
+            }
+            labels.Sort();
+            Control[] myControls = new Control[Controls.Count];
+            for (int i = 0; i < Controls.Count; i++)
+            {
+>>>>>>> 4ec8652abfcff9da5f5b6d0adcac17bac1479ef0
                 myControls[i] = this.Controls.Find(labels[i], true).Single(); 
             }
             List<string> locations = FileHandler.OpenFile("locations.txt");
@@ -88,6 +108,10 @@ namespace Pinger
         }
         private void сохранитьРасположениеЭлементовToolStripMenuItem_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4ec8652abfcff9da5f5b6d0adcac17bac1479ef0
             List<string> labels = new List<string>(Controls.Count);
 
             for (int i = 0; i < Controls.Count; i++)

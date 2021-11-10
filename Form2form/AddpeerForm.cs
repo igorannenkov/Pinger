@@ -26,6 +26,10 @@ namespace Pinger
             { return false; }
             else
             {
+<<<<<<< HEAD
+=======
+                //int a = 0, b = 0, c = 0, d = 0;
+>>>>>>> 4ec8652abfcff9da5f5b6d0adcac17bac1479ef0
                 bool A = int.TryParse(temp[0], out int a);
                 bool B = int.TryParse(temp[1], out int b);
                 bool C = int.TryParse(temp[2], out int c);
@@ -65,11 +69,11 @@ namespace Pinger
                 }
                 this.Close();
                 f4.listBox1.Refresh();
-                //при наличии файла с координатами помещаем новый элемент в правый нижний угол
+                //при наличии файла с координатами помещаем новый элемент в левый верхний угол
                 if (File.Exists("locations.txt"))
                 {
                     StreamWriter Writer = new StreamWriter("locations.txt", true);
-                    Writer.WriteLine("1700,900");
+                    Writer.WriteLine("10,10");
                     Writer.Close();
                 }
             }
