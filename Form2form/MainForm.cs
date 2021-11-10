@@ -15,16 +15,12 @@ namespace Pinger
     public partial class MainForm : Form
     {
         public static int[] failurePings;//массив, выделенный для хранения количества "неудачных" попыток пинга
-
         public static List<int> failures = new List<int>();
-
         public static List<int> z_order = new List<int>();
-
         public MainForm()
         {
             InitializeComponent();
         }
-
         private void AddPeers()
         {
             if (!File.Exists("peers.txt") || !File.Exists("locations.txt"))
@@ -35,26 +31,21 @@ namespace Pinger
             this.WindowState = FormWindowState.Maximized;
             List<string> hosts = FileHandler.OpenFile("peers.txt");   //считать содержимое файла с узлами  
             List<string> locations = FileHandler.OpenFile("locations.txt");
-            hosts.Sort();
-
-           
-
+            hosts.Sort();        
             for (int i = 0; i < hosts.Count; i++)
             {
                 PeerControl pc = new PeerControl();
                 pc.Location = new Point(Convert.ToInt32(locations[i].Split(',')[0]), Convert.ToInt32(locations[i].Split(',')[1]));
                 pc.Tag = hosts[i];
+                pc.Name = pc.Tag.ToString();
                 this.Controls.Add(pc);
                 z_order.Add(Controls.GetChildIndex(pc));
-  
             }
             for (int i = 0; i < this.Controls.Count; i++)
             {
                 failures.Add(0);
             }
         }
-
-
         private void Form1_Load(object sender, EventArgs e)
         {
             AddPeers();
@@ -68,29 +59,53 @@ namespace Pinger
             }
             else
             {
-                this.Visible = true; this.WindowState = FormWindowState.Maximized;
+                this.Visible = true; 
+                this.WindowState = FormWindowState.Maximized;
             }
-        }
-      
-        
+        }     
         private void загрузитьКоординатыToolStripMenuItem_Click(object sender, EventArgs e)
-        {          
-            List<string> locations = FileHandler.OpenFile("locations.txt");
+        {
+            List<string> labels = new List<string>(Controls.Count);
+
             for (int i = 0; i < Controls.Count; i++)
+            {
+                labels.Add(Controls[i].Tag.ToString());
+            }
+            labels.Sort();
+            Control[] myControls = new Control[Controls.Count];
+            for (int i = 0; i < Controls.Count; i++)
+            {
+                myControls[i] = this.Controls.Find(labels[i], true).Single(); 
+            }
+            List<string> locations = FileHandler.OpenFile("locations.txt");
+            Controls.Clear();
+            for (int i = 0; i < myControls.Length; i++)
             {   
                 string[] coords = locations[i].Split(',');
                 Point point = new Point(int.Parse(coords[0]), int.Parse(coords[1]));
-                Controls[i].Location = point;  
+                myControls[i].Location = point;
+                this.Controls.Add(myControls[i]);
             }    
         }
         private void сохранитьРасположениеЭлементовToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StreamWriter Writer = new StreamWriter("locations.txt");
-            List<Point> locations = new List<Point>();
-            Control[] controls = this.Controls.Find("PeerControl", true);
-            for (int i = 0; i < controls.Length; i++)
+
+            List<string> labels = new List<string>(Controls.Count);
+
+            for (int i = 0; i < Controls.Count; i++)
             {
-                Writer.WriteLine(controls[i].Location.X + "," + controls[i].Location.Y);
+                labels.Add(Controls[i].Tag.ToString());
+            }
+            labels.Sort();
+            Control[] myControls = new Control[Controls.Count];
+            for (int i = 0; i < Controls.Count; i++)
+            {
+                myControls[i] = this.Controls.Find(labels[i],true).Single(); 
+            }
+            StreamWriter Writer = new StreamWriter("locations.txt");
+            for (int i = 0; i < myControls.Length; i++)
+            {
+                Writer.WriteLine(myControls[i].Location.X + "," + myControls[i].Location.Y);
             }
             Writer.Close();
         }
@@ -124,8 +139,6 @@ namespace Pinger
             About about = new About();
             about.StartPosition = FormStartPosition.CenterScreen;
             about.ShowDialog();
-
-
         }
         private void координатыToolStripMenuItem_Click(object sender, EventArgs e)
         {

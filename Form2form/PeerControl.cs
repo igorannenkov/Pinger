@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.NetworkInformation;
 
-
 namespace Pinger
 {
     public partial class PeerControl : UserControl
@@ -18,7 +17,6 @@ namespace Pinger
         {
             InitializeComponent();
         }
-
         int CAPACITY = 50;// глубина логгирования состояния узла
         int ATTEMPTS = 4;// максимальное число попыток пинга, после которых узел считается недоступным
         public List<string> Results = new List<string>(20);
@@ -26,12 +24,7 @@ namespace Pinger
         public DateTime Alarmtime = DateTime.Now;
         TimeSpan Alarmed = new TimeSpan();
         Ping PingSender = new Ping();
-
-
-
-        Point prevMousePosition;
-       
-
+        Point prevMousePosition;      
         private void PeerControl_Load(object sender, EventArgs e)
         {
             string[] data = this.Tag.ToString().Split(';');
@@ -43,7 +36,6 @@ namespace Pinger
             timer1.Start();
 
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             string[] data = this.Tag.ToString().Split(';');
@@ -51,7 +43,6 @@ namespace Pinger
             string ip = data[1];
             pingerAsync(hostname, ip);
         }
-
         private void pingerAsync(string hostname, string ip)
         {
             PingHeader.Text = hostname;
@@ -281,8 +272,6 @@ namespace Pinger
                 }
             }
         }
-
-
         private void ShowHistory()
         {
             PeerhistoryForm HistoryForm = new PeerhistoryForm();
@@ -295,12 +284,10 @@ namespace Pinger
             HistoryForm.StartPosition = FormStartPosition.CenterParent;
             HistoryForm.ShowDialog();
         }
-
         private void историяToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowHistory();
         }
-
         private void очиститьИсториюToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Results.Count > 0)
@@ -312,7 +299,6 @@ namespace Pinger
                 PingHeader.BackColor = Color.FromArgb(192, 255, 255);
             }
         }
-
         private void обменПакетамиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -324,7 +310,6 @@ namespace Pinger
                 //пока игнорируем, ждем ответа от хоста
             }
         }
-
         private void PingHeader_DoubleClick(object sender, EventArgs e)
         {
             ShowHistory();
@@ -340,8 +325,7 @@ namespace Pinger
             {
                 prevMousePosition = Control.MousePosition;
                 this.Cursor = Cursors.SizeAll;
-             //   this.BringToFront();
-                
+                this.BringToFront();               
             }
         }
         private void PingResult_MouseMove(object sender, MouseEventArgs e)
@@ -368,14 +352,8 @@ namespace Pinger
             {
                 prevMousePosition = Control.MousePosition;
                 this.Cursor = Cursors.SizeAll;
-
-               // this.BringToFront();
-
-
-            }
-          
-
-           
+                this.BringToFront();
+            }  
         }
         private void peer_name_MouseUp(object sender, MouseEventArgs e)
         {

@@ -26,11 +26,11 @@ namespace Pinger
             { return false; }
             else
             {
-                int a = 0, b = 0, c = 0, d = 0;
-                bool A = int.TryParse(temp[0], out a);
-                bool B = int.TryParse(temp[1], out b);
-                bool C = int.TryParse(temp[2], out c);
-                bool D = int.TryParse(temp[3], out d);
+                //int a = 0, b = 0, c = 0, d = 0;
+                bool A = int.TryParse(temp[0], out int a);
+                bool B = int.TryParse(temp[1], out int b);
+                bool C = int.TryParse(temp[2], out int c);
+                bool D = int.TryParse(temp[3], out int d);
                 if (!A || !B || !C || !D)
                 {
                     return false;
@@ -66,11 +66,11 @@ namespace Pinger
                 }
                 this.Close();
                 f4.listBox1.Refresh();
-                //при наличии файла с координатами помещаем новый элемент в правый нижний угол
+                //при наличии файла с координатами помещаем новый элемент в левый верхний угол
                 if (File.Exists("locations.txt"))
                 {
                     StreamWriter Writer = new StreamWriter("locations.txt", true);
-                    Writer.WriteLine("1700,900");
+                    Writer.WriteLine("10,10");
                     Writer.Close();
                 }
             }
