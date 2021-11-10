@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,11 +24,7 @@ namespace Pinger
         public DateTime Alarmtime = DateTime.Now;
         TimeSpan Alarmed = new TimeSpan();
         Ping PingSender = new Ping();
-<<<<<<< HEAD
-        Point prevMousePosition;     
-=======
         Point prevMousePosition;      
->>>>>>> 4ec8652abfcff9da5f5b6d0adcac17bac1479ef0
         private void PeerControl_Load(object sender, EventArgs e)
         {
             string[] data = this.Tag.ToString().Split(';');
@@ -38,6 +34,7 @@ namespace Pinger
             this.toolTip.SetToolTip(this.PingHeader, this.Tag.ToString().Split(';')[2]);
             this.toolTip.SetToolTip(this.PingResult, this.Tag.ToString().Split(';')[2]);
             timer1.Start();
+
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -84,7 +81,12 @@ namespace Pinger
                 {
                     case IPStatus.Success:
                         {
+
+
                             MainForm.failures[this.ParentForm.Controls.IndexOf(this)] = 0;
+
+                            //[ActiveForm.Controls.IndexOf(, this)] = 0;
+
                             PingResult.Text = e.Reply.Address.ToString() + " - " + e.Reply.RoundtripTime.ToString() + " мс";
                             PingResult.BackColor = Color.White;
                             if (e.Reply.RoundtripTime > 500) //Если пинг более 500мс - следует обратить внимание (подкрасим оранжевым)
@@ -119,6 +121,10 @@ namespace Pinger
                             PingResult.Text = data[1] + " - DestHostUnreachable";
                             PingResult.BackColor = Color.Red;
                             MainForm.failures[this.ParentForm.Controls.IndexOf(this)]++;
+                            /*
+                             * Array.IndexOf(this.ParentForm.MdiChildren, this) 
+                             * Это индекс дочерней формы в массиве дочерних форм.
+                             */
                             if (MainForm.failures[this.ParentForm.Controls.IndexOf(this)] == ATTEMPTS)
                             {
                                 if (!wasOffline)
@@ -272,6 +278,7 @@ namespace Pinger
             HistoryForm.Text = this.PingHeader.Text + " - история";
             for (int i = 0; i < Results.Count; i++)
             {
+                // HistoryForm.Owner = this;
                 HistoryForm.richTextBox1.Text += Results.ToArray()[i] + "\r\n";
             }
             HistoryForm.StartPosition = FormStartPosition.CenterParent;
@@ -318,11 +325,7 @@ namespace Pinger
             {
                 prevMousePosition = Control.MousePosition;
                 this.Cursor = Cursors.SizeAll;
-<<<<<<< HEAD
-                this.BringToFront();     
-=======
                 this.BringToFront();               
->>>>>>> 4ec8652abfcff9da5f5b6d0adcac17bac1479ef0
             }
         }
         private void PingResult_MouseMove(object sender, MouseEventArgs e)
@@ -350,11 +353,7 @@ namespace Pinger
                 prevMousePosition = Control.MousePosition;
                 this.Cursor = Cursors.SizeAll;
                 this.BringToFront();
-<<<<<<< HEAD
-            }     
-=======
             }  
->>>>>>> 4ec8652abfcff9da5f5b6d0adcac17bac1479ef0
         }
         private void peer_name_MouseUp(object sender, MouseEventArgs e)
         {
