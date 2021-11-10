@@ -11,8 +11,7 @@ namespace Pinger
     static class FileHandler
     {
         public static List<string> OpenFile(string filename)
-        {
-            
+        {    
                 StreamReader Reader = new StreamReader(filename);
                 List<string> items = new List<string>();
                 string temp = "";

@@ -22,11 +22,10 @@ namespace Pinger
             { return false; }
             else
             {
-                int a = 0, b = 0, c = 0, d = 0;
-                bool A = int.TryParse(temp[0], out a);
-                bool B = int.TryParse(temp[1], out b);
-                bool C = int.TryParse(temp[2], out c);
-                bool D = int.TryParse(temp[3], out d);
+                bool A = int.TryParse(temp[0], out int a);
+                bool B = int.TryParse(temp[1], out int b);
+                bool C = int.TryParse(temp[2], out int c);
+                bool D = int.TryParse(temp[3], out int d);
                 if (!A || !B || !C || !D)
                 {
                     return false;
