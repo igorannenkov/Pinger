@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,10 +26,7 @@ namespace Pinger
             { return false; }
             else
             {
-<<<<<<< HEAD
-=======
                 //int a = 0, b = 0, c = 0, d = 0;
->>>>>>> 4ec8652abfcff9da5f5b6d0adcac17bac1479ef0
                 bool A = int.TryParse(temp[0], out int a);
                 bool B = int.TryParse(temp[1], out int b);
                 bool C = int.TryParse(temp[2], out int c);
