@@ -49,7 +49,7 @@ namespace Pinger
             this.PingHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.PingHeader.Location = new System.Drawing.Point(0, 0);
             this.PingHeader.Name = "PingHeader";
-            this.PingHeader.Size = new System.Drawing.Size(135, 15);
+            this.PingHeader.Size = new System.Drawing.Size(140, 18);
             this.PingHeader.TabIndex = 0;
             this.PingHeader.Text = "Загрузка...";
             this.PingHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -96,11 +96,13 @@ namespace Pinger
             // 
             // PingResult
             // 
+            this.PingResult.AutoEllipsis = true;
             this.PingResult.BackColor = System.Drawing.Color.White;
             this.PingResult.ContextMenuStrip = this.PeerMenu;
-            this.PingResult.Location = new System.Drawing.Point(0, 15);
+            this.PingResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PingResult.Location = new System.Drawing.Point(0, 18);
             this.PingResult.Name = "PingResult";
-            this.PingResult.Size = new System.Drawing.Size(135, 17);
+            this.PingResult.Size = new System.Drawing.Size(140, 18);
             this.PingResult.TabIndex = 0;
             this.PingResult.Text = "Загрузка...";
             this.PingResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -118,10 +120,11 @@ namespace Pinger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.PingResult);
             this.Controls.Add(this.PingHeader);
             this.Name = "PeerControl";
-            this.Size = new System.Drawing.Size(133, 32);
+            this.Size = new System.Drawing.Size(140, 38);
             this.Load += new System.EventHandler(this.PeerControl_Load);
             this.PeerMenu.ResumeLayout(false);
             this.ResumeLayout(false);

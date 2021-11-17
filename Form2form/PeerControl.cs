@@ -81,8 +81,6 @@ namespace Pinger
                 {
                     case IPStatus.Success:
                         {
-
-
                             MainForm.failures[this.ParentForm.Controls.IndexOf(this)] = 0;
 
                             //[ActiveForm.Controls.IndexOf(, this)] = 0;
