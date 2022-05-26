@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -13,7 +12,7 @@ using System.Threading;
 
 namespace Pinger
 {
-    public partial class PeereditForm : Form
+    public partial class PeerEditForm : Form
     {
         public bool isIP(string s) //проверка является ли строка ip адресом (вместо рег выражения)
         {
@@ -40,40 +39,50 @@ namespace Pinger
             }
             return false;
         }
-        public PeereditForm()
+        public PeerEditForm()
         {
             InitializeComponent();
         }
         private void Edit_IP_button_Click(object sender, EventArgs e)
         {
-            //логика редактирования - удалить редактируемый элемент и на его место поместить отредактированные данные
-            string toDelete = hostname_text.Text.ToString() + ";" + IP_text.Text.ToString() + ";" + location_text.Text.ToString();
-            PeerslistForm frm4 = this.Owner as PeerslistForm;
             if (hostname_text.Text.ToString() != "" && location_text.Text.ToString() != "" && isIP(IP_text.Text))
             {
-                frm4.listBox1.Items.RemoveAt(frm4.listBox1.SelectedIndex);
-                frm4.listBox1.Items.Add(hostname_text.Text.ToString() + ";" + IP_text.Text.ToString() + ";" + location_text.Text.ToString());
-                //считываем отредактированный список в List, удаляем дубликаты и сохраняем в файл
-                List<string> hosts = new List<string>();
-                for (int i = 0; i < frm4.listBox1.Items.Count; i++)
+                ThePeer peer = this.Owner.ActiveControl as ThePeer;
+
+                //если меняется IP - очищаем лог.
+                if (peer.peerIpAddress != this.IP_text.Text)
                 {
-                    hosts.Add(frm4.listBox1.Items[i].ToString());
+                    peer.Results.Clear();
+                    peer.wasOffline = false;
                 }
-                hosts.Sort();
-                hosts = hosts.Distinct().ToList();
-                StreamWriter Writer = new StreamWriter("peers.txt", append: false);
-                for (int i = 0; i < hosts.Count; i++)
+
+                peer.peerHostName = this.hostname_text.Text;
+                peer.peerComment = this.location_text.Text;
+                peer.peerIpAddress = this.IP_text.Text;
+                peer.ToolTip.SetToolTip(peer.PeerHeader, peer.peerComment);
+                peer.ToolTip.SetToolTip(peer.PeerStatus, peer.peerComment);
+
+                List<PeerInfo> peersToSave = new List<PeerInfo>();                  
+
+                for (int i = 0; i < this.Owner.Controls.Count; i++)
                 {
-                    Writer.WriteLine(hosts[i]);
+                    if (this.Owner.Controls[i] is ThePeer)
+                    {
+                        peersToSave.Add(new PeerInfo((this.Owner.Controls[i] as ThePeer).peerHostName,
+                                                        (this.Owner.Controls[i] as ThePeer).peerIpAddress,
+                                                        (this.Owner.Controls[i] as ThePeer).peerComment,
+                                                        (this.Owner.Controls[i].Location)));
+                    }
                 }
-                Writer.Close();
+
+                peersToSave.Sort();
+                PeerFileHandler.SavePeers(peersToSave, "MyPeers.csv");
                 this.Close();
-                frm4.listBox1.Refresh();
             }
             else
             {
-                for (int i = 0; i < 3; i++) //"мигаем" 3 раза, если что-то некорректно заполнено
-                {
+                for (int i = 0; i < 3; i++)
+                {//"мигаем" 3 раза, если что-то некорректно заполнено
                     if (hostname_text.Text == "")
                     {
                         hostname_text.BackColor = Color.Red;
@@ -94,7 +103,7 @@ namespace Pinger
                     this.Refresh();
                     Thread.Sleep(50);
                 }
-             }
+            }
         }
     }
 }

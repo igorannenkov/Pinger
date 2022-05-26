@@ -1,6 +1,6 @@
 ﻿namespace Pinger
 {
-    partial class PeereditForm
+    partial class PeerEditForm
     {
         /// <summary>
         /// Required designer variable.

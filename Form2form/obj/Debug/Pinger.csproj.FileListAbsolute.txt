@@ -1,0 +1,108 @@
+D:\Пингер\Form2form monitoring debugged\Form2form\bin\Debug\Pinger.exe.config
+D:\Пингер\Form2form monitoring debugged\Form2form\bin\Debug\Pinger.exe
+D:\Пингер\Form2form monitoring debugged\Form2form\bin\Debug\Pinger.pdb
+D:\Пингер\Form2form monitoring debugged\Form2form\obj\Debug\Pinger.AboutForm.resources
+D:\Пингер\Form2form monitoring debugged\Form2form\obj\Debug\Pinger.AddPeerForm.resources
+D:\Пингер\Form2form monitoring debugged\Form2form\obj\Debug\Pinger.MainForm.resources
+D:\Пингер\Form2form monitoring debugged\Form2form\obj\Debug\Pinger.PeerstatusForm.resources
+D:\Пингер\Form2form monitoring debugged\Form2form\obj\Debug\Pinger.PeereditForm.resources
+D:\Пингер\Form2form monitoring debugged\Form2form\obj\Debug\Pinger.PeerslistForm.resources
+D:\Пингер\Form2form monitoring debugged\Form2form\obj\Debug\Pinger.PeerhistoryForm.resources
+D:\Пингер\Form2form monitoring debugged\Form2form\obj\Debug\Pinger.Properties.Resources.resources
+D:\Пингер\Form2form monitoring debugged\Form2form\obj\Debug\Pinger.csproj.GenerateResource.Cache
+D:\Пингер\Form2form monitoring debugged\Form2form\obj\Debug\Pinger.exe
+D:\Пингер\Form2form monitoring debugged\Form2form\obj\Debug\Pinger.pdb
+D:\Пингер\Form2form remastered\Form2form\bin\Debug\Pinger.exe.config
+D:\Пингер\Form2form remastered\Form2form\obj\Debug\Pinger.exe
+D:\Пингер\Form2form remastered\Form2form\obj\Debug\Pinger.pdb
+D:\Пингер\Form2form remastered\Form2form\bin\Debug\Pinger.exe
+D:\Пингер\Form2form remastered\Form2form\bin\Debug\Pinger.pdb
+D:\Пингер\Form2form remastered\Form2form\obj\Debug\Pinger.AboutForm.resources
+D:\Пингер\Form2form remastered\Form2form\obj\Debug\Pinger.AddPeerForm.resources
+D:\Пингер\Form2form remastered\Form2form\obj\Debug\Pinger.MainForm.resources
+D:\Пингер\Form2form remastered\Form2form\obj\Debug\Pinger.PeerstatusForm.resources
+D:\Пингер\Form2form remastered\Form2form\obj\Debug\Pinger.PeereditForm.resources
+D:\Пингер\Form2form remastered\Form2form\obj\Debug\Pinger.PeerslistForm.resources
+D:\Пингер\Form2form remastered\Form2form\obj\Debug\Pinger.PeerhistoryForm.resources
+D:\Пингер\Form2form remastered\Form2form\obj\Debug\Pinger.Properties.Resources.resources
+D:\Пингер\Form2form remastered\Form2form\obj\Debug\Pinger.csproj.GenerateResource.Cache
+D:\Пингер\Form2form remastered\Form2form\obj\Debug\Pinger.csprojResolveAssemblyReference.cache
+D:\Пингер\Form2form refactored\Form2form\bin\Debug\Pinger.exe.config
+D:\Пингер\Form2form refactored\Form2form\obj\Debug\Pinger.exe
+D:\Пингер\Form2form refactored\Form2form\obj\Debug\Pinger.pdb
+D:\Пингер\Form2form refactored\Form2form\bin\Debug\Pinger.exe
+D:\Пингер\Form2form refactored\Form2form\bin\Debug\Pinger.pdb
+D:\Пингер\Form2form refactored\Form2form\obj\Debug\Pinger.AboutForm.resources
+D:\Пингер\Form2form refactored\Form2form\obj\Debug\Pinger.AddPeerForm.resources
+D:\Пингер\Form2form refactored\Form2form\obj\Debug\Pinger.MainForm.resources
+D:\Пингер\Form2form refactored\Form2form\obj\Debug\Pinger.PeerstatusForm.resources
+D:\Пингер\Form2form refactored\Form2form\obj\Debug\Pinger.PeereditForm.resources
+D:\Пингер\Form2form refactored\Form2form\obj\Debug\Pinger.PeerslistForm.resources
+D:\Пингер\Form2form refactored\Form2form\obj\Debug\Pinger.PeerhistoryForm.resources
+D:\Пингер\Form2form refactored\Form2form\obj\Debug\Pinger.Properties.Resources.resources
+D:\Пингер\Form2form refactored\Form2form\obj\Debug\Pinger.csproj.GenerateResource.Cache
+D:\Пингер\Form2form refactored\Form2form\obj\Debug\Pinger.csprojAssemblyReference.cache
+D:\Пингер\Form2form refactored\Form2form\obj\Debug\Pinger.csproj.CoreCompileInputs.cache
+D:\Пингер\Form2form refactored peers\Form2form\bin\Debug\Pinger.exe.config
+D:\Пингер\Form2form refactored peers\Form2form\bin\Debug\Pinger.exe
+D:\Пингер\Form2form refactored peers\Form2form\bin\Debug\Pinger.pdb
+D:\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.AboutForm.resources
+D:\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.AddPeerForm.resources
+D:\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.MainForm.resources
+D:\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.PeerstatusForm.resources
+D:\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.PeereditForm.resources
+D:\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.PeerslistForm.resources
+D:\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.PeerhistoryForm.resources
+D:\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.Properties.Resources.resources
+D:\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.csproj.GenerateResource.cache
+D:\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.csproj.CoreCompileInputs.cache
+D:\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.exe
+D:\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.pdb
+D:\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.csproj.AssemblyReference.cache
+D:\Проги\Пингер\Form2form refactored peers\Form2form\bin\Debug\Pinger.exe.config
+D:\Проги\Пингер\Form2form refactored peers\Form2form\bin\Debug\Pinger.exe
+D:\Проги\Пингер\Form2form refactored peers\Form2form\bin\Debug\Pinger.pdb
+D:\Проги\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.AddPeerForm.resources
+D:\Проги\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.MainForm.resources
+D:\Проги\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.PeereditForm.resources
+D:\Проги\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.PeerslistForm.resources
+D:\Проги\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.PeerhistoryForm.resources
+D:\Проги\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.Properties.Resources.resources
+D:\Проги\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.csproj.GenerateResource.cache
+D:\Проги\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.csproj.CoreCompileInputs.cache
+D:\Проги\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.exe
+D:\Проги\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.pdb
+D:\Проги\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.PeerControl.resources
+D:\Проги\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.About.resources
+C:\Users\Игорь\Desktop\Form2form refactored peers\Form2form\bin\Debug\Pinger.exe.config
+C:\Users\Игорь\Desktop\Form2form refactored peers\Form2form\bin\Debug\Pinger.exe
+C:\Users\Игорь\Desktop\Form2form refactored peers\Form2form\bin\Debug\Pinger.pdb
+C:\Users\Игорь\Desktop\Form2form refactored peers\Form2form\obj\Debug\Pinger.csproj.AssemblyReference.cache
+C:\Users\Игорь\Desktop\Form2form refactored peers\Form2form\obj\Debug\Pinger.About.resources
+C:\Users\Игорь\Desktop\Form2form refactored peers\Form2form\obj\Debug\Pinger.AddPeerForm.resources
+C:\Users\Игорь\Desktop\Form2form refactored peers\Form2form\obj\Debug\Pinger.MainForm.resources
+C:\Users\Игорь\Desktop\Form2form refactored peers\Form2form\obj\Debug\Pinger.PeerControl.resources
+C:\Users\Игорь\Desktop\Form2form refactored peers\Form2form\obj\Debug\Pinger.PeereditForm.resources
+C:\Users\Игорь\Desktop\Form2form refactored peers\Form2form\obj\Debug\Pinger.PeerslistForm.resources
+C:\Users\Игорь\Desktop\Form2form refactored peers\Form2form\obj\Debug\Pinger.PeerhistoryForm.resources
+C:\Users\Игорь\Desktop\Form2form refactored peers\Form2form\obj\Debug\Pinger.Properties.Resources.resources
+C:\Users\Игорь\Desktop\Form2form refactored peers\Form2form\obj\Debug\Pinger.csproj.GenerateResource.cache
+C:\Users\Игорь\Desktop\Form2form refactored peers\Form2form\obj\Debug\Pinger.csproj.CoreCompileInputs.cache
+C:\Users\Игорь\Desktop\Form2form refactored peers\Form2form\obj\Debug\Pinger.exe
+C:\Users\Игорь\Desktop\Form2form refactored peers\Form2form\obj\Debug\Pinger.pdb
+D:\Проги\Пингер\Form2form refactored peers\Form2form\obj\Debug\Pinger.csproj.AssemblyReference.cache
+C:\Users\Игорь\Desktop\Pinger Net35\Form2form\bin\Debug\Pinger.exe
+C:\Users\Игорь\Desktop\Pinger Net35\Form2form\bin\Debug\Pinger.exe.config
+C:\Users\Игорь\Desktop\Pinger Net35\Form2form\bin\Debug\Pinger.pdb
+C:\Users\Игорь\Desktop\Pinger Net35\Form2form\obj\Debug\Pinger.About.resources
+C:\Users\Игорь\Desktop\Pinger Net35\Form2form\obj\Debug\Pinger.AddPeerForm.resources
+C:\Users\Игорь\Desktop\Pinger Net35\Form2form\obj\Debug\Pinger.MainForm.resources
+C:\Users\Игорь\Desktop\Pinger Net35\Form2form\obj\Debug\Pinger.PeereditForm.resources
+C:\Users\Игорь\Desktop\Pinger Net35\Form2form\obj\Debug\Pinger.Properties.Resources.resources
+C:\Users\Игорь\Desktop\Pinger Net35\Form2form\obj\Debug\Pinger.csproj.GenerateResource.cache
+C:\Users\Игорь\Desktop\Pinger Net35\Form2form\obj\Debug\Pinger.csproj.CoreCompileInputs.cache
+C:\Users\Игорь\Desktop\Pinger Net35\Form2form\obj\Debug\Pinger.exe
+C:\Users\Игорь\Desktop\Pinger Net35\Form2form\obj\Debug\Pinger.pdb
+C:\Users\Игорь\Desktop\Pinger Net35\Form2form\obj\Debug\Pinger.ThePeer.resources
+C:\Users\Игорь\Desktop\Pinger Net35\Form2form\obj\Debug\Pinger.PeerLogForm.resources
+C:\Users\Игорь\Desktop\Pinger Net35\Form2form\obj\Debug\Pinger.csproj.AssemblyReference.cache
