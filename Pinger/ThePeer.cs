@@ -83,7 +83,7 @@ namespace Pinger
                         MainForm.failures[this.ParentForm.Controls.IndexOf(this)] = 0;
                         PeerStatus.Text = e.Reply.Address.ToString() + " - " + e.Reply.RoundtripTime.ToString() + " мс";
                         PeerStatus.BackColor = Color.White;
-                            PeerHeader.BackColor = Color.YellowGreen;
+                            PeerHeader.BackColor = Color.PaleGreen;
                         if (e.Reply.RoundtripTime > 500) //Если пинг более 500мс - следует обратить внимание (подкрасим оранжевым)
                         {
                             PeerStatus.BackColor = Color.Orange;
@@ -104,7 +104,7 @@ namespace Pinger
 
                                 if (Results.Count == 0)
                                 {
-                                        PeerHeader.BackColor = Color.YellowGreen;
+                                        PeerHeader.BackColor = Color.PaleGreen;
                                 }
                                 break;
                             }
@@ -291,7 +291,7 @@ namespace Pinger
                 string temp = PeerHeader.Text;
                 temp = temp.Substring(temp.IndexOf(" "));
                 PeerHeader.Text = temp;
-                PeerHeader.BackColor = Color.YellowGreen;
+                PeerHeader.BackColor = Color.PaleGreen;
             }
         }
         private void обменПакетамиToolStripMenuItem_Click(object sender, EventArgs e)

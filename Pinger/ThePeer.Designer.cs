@@ -46,7 +46,7 @@ namespace Pinger
             // 
             // PeerHeader
             // 
-            this.PeerHeader.BackColor = System.Drawing.Color.YellowGreen;
+            this.PeerHeader.BackColor = System.Drawing.Color.PaleGreen;
             this.PeerHeader.ContextMenuStrip = this.PeerMenu;
             this.PeerHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.PeerHeader.Location = new System.Drawing.Point(0, 0);
