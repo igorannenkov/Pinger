@@ -108,91 +108,7 @@ namespace Pinger
 
         public static void ArrangeElements(MainForm form)
         {
-            //int height = form.Height - 125;
-
-            //List<ThePeer> peers = new List<ThePeer>();
-
-            //for (int i = 0; i < form.Controls.Count; i++)
-            //{
-            //    if (form.Controls[i] is ThePeer)
-            //    {
-            //        peers.Add((ThePeer)form.Controls[i]);
-            //    }
-            //}
-
-            //peers.Sort();
-
-            //form.Controls.Clear();
-
-            //for (int i = 0, x = 5, y = 5, prevX = x; i <= peers.Count - 1; i++)
-            //{
-            //    bool firstline = false;
-
-            //    if (i == 0)
-            //    {
-            //        peers[i].Location = new Point(x, y);
-            //        form.Controls.Add(peers[i]);
-            //        continue;
-            //    }
-
-            //    if (i == peers.Count - 1)
-            //    {
-            //        if ((peers[i]).peerHostName.Contains(((peers[i - 1]).peerHostName)))
-            //        {
-            //            x += 145;
-            //            peers[i].Location = new Point(x, y);
-            //            form.Controls.Add(peers[i]);
-            //            x = prevX;
-            //        }
-            //        else
-            //        {
-            //            y += 40;
-            //            peers[i].Location = new Point(x, y);
-            //            form.Controls.Add(peers[i]);
-            //        }
-            //        continue;
-            //    }
-
-            //    if ((y > height) && !((peers[i]).peerHostName.Contains(((peers[i - 1]).peerHostName))))
-            //    {
-            //        x += 300;
-            //        prevX = x;
-            //        y = 5;
-            //        firstline = true;
-            //    }
-
-            //    try
-            //    {
-            //        if (((peers[i]).peerHostName.Contains(((peers[i - 1]).peerHostName))))
-            //        {
-            //            x += 145;
-            //            peers[i].Location = new Point(x, y);
-            //            form.Controls.Add(peers[i]);
-            //            x = prevX;
-            //        }
-            //        else
-            //        {
-            //            if (firstline)
-            //            {
-            //                peers[i].Location = new Point(x, y);
-            //                form.Controls.Add(peers[i]);
-            //            }
-            //            else
-            //            {
-            //                y += 40;
-            //                peers[i].Location = new Point(x, y);
-            //                form.Controls.Add(peers[i]);
-            //            }
-            //        }
-            //    }
-            //    catch (IndexOutOfRangeException exp)
-            //    {
-            //        MessageBox.Show(exp.Message);
-            //    }
-            //}
-
             int height = form.Height - 125;
-
             List<ThePeer> peers = new List<ThePeer>();
 
             for (int i = 0; i < form.Controls.Count; i++)
@@ -205,8 +121,6 @@ namespace Pinger
 
             peers.Sort();
 
-          //  form.Controls.Clear();
-
             for (int i = 0, x = 5, y = 5, prevX = x; i <= peers.Count - 1; i++)
             {
                 bool firstline = false;
@@ -214,7 +128,6 @@ namespace Pinger
                 if (i == 0)
                 {
                     peers[i].Location = new Point(x, y);
-                  //  form.Controls.Add(peers[i]);
                     continue;
                 }
 
@@ -224,14 +137,12 @@ namespace Pinger
                     {
                         x += 145;
                         peers[i].Location = new Point(x, y);
-                       // form.Controls.Add(peers[i]);
                         x = prevX;
                     }
                     else
                     {
                         y += 40;
                         peers[i].Location = new Point(x, y);
-                      //  form.Controls.Add(peers[i]);
                     }
                     continue;
                 }
@@ -250,7 +161,6 @@ namespace Pinger
                     {
                         x += 145;
                         peers[i].Location = new Point(x, y);
-                       // form.Controls.Add(peers[i]);
                         x = prevX;
                     }
                     else
@@ -258,13 +168,11 @@ namespace Pinger
                         if (firstline)
                         {
                             peers[i].Location = new Point(x, y);
-                           // form.Controls.Add(peers[i]);
                         }
                         else
                         {
                             y += 40;
                             peers[i].Location = new Point(x, y);
-                          //  form.Controls.Add(peers[i]);
                         }
                     }
                 }
@@ -314,7 +222,6 @@ namespace Pinger
         {
             Application.Restart();
         }
-
         private void ExitApplication_Click(object sender, EventArgs e)
         {
             const string message = "Вы уверены?";

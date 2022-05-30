@@ -8,7 +8,7 @@ namespace Pinger
 {
     public partial class PeerEditForm : Form
     {
-        public bool IsIP(string s) //проверка является ли строка ip адресом (вместо рег выражения)
+        public bool IsIP(string s)
         {
             string[] temp = s.Split('.');
             if (temp.Length != 4)
@@ -74,8 +74,9 @@ namespace Pinger
             }
             else
             {
+                //"мигаем" 3 раза, если что-то некорректно заполнено
                 for (int i = 0; i < 3; i++)
-                {//"мигаем" 3 раза, если что-то некорректно заполнено
+                {
                     if (hostname_text.Text == "")
                     {
                         hostname_text.BackColor = Color.Red;

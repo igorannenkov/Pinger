@@ -15,14 +15,13 @@ namespace Pinger
         {
             InitializeComponent();
         }
-        public bool IsIP(string s) //проверка является ли строка ip адресом 
+        public bool IsIP(string s)
         {
             string[] temp = s.Split('.');
             if (temp.Length != 4)
             { return false; }
             else
             {
-                //int a = 0, b = 0, c = 0, d = 0;
                 bool A = int.TryParse(temp[0], out int a);
                 bool B = int.TryParse(temp[1], out int b);
                 bool C = int.TryParse(temp[2], out int c);
@@ -54,10 +53,7 @@ namespace Pinger
                     return;
                 }
 
-
-
-                ThePeer peer = new ThePeer();
-                
+                ThePeer peer = new ThePeer();   
                 peer.peerHostName = hostname_text.Text;
                 peer.peerIpAddress = IP_text.Text;
                 peer.peerComment = location_text.Text;
@@ -65,14 +61,15 @@ namespace Pinger
                 MainForm.failures.Add(0);
                 MainForm.ArrangeElements((Pinger.MainForm)this.Owner);
                 peers.Add(new PeerInfo(hostname_text.Text, IP_text.Text, location_text.Text, new Point()));
-                peers = (peers.GroupBy(x => x.Name).Select(y => y.First())).ToList();  //peers.Distinct().ToList();
+                peers = (peers.GroupBy(x => x.Name).Select(y => y.First())).ToList(); 
                 peers.Sort();
                 PeerFileHandler.SavePeers(peers, "Peers.txt");
                 this.Close();
             }
             else
-            {          
-                for (int i = 0; i < 3; i++) // подсвечиваем некорректно заполненные поля, "моргаем" 3 раза
+            {
+                // подсвечиваем некорректно заполненные поля, "моргаем" 3 раза
+                for (int i = 0; i < 3; i++) 
                 {
                     if (hostname_text.Text == "")
                     {

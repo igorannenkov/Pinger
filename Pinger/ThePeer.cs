@@ -12,8 +12,10 @@ namespace Pinger
         {
             InitializeComponent();
         }
-        static int capacity = 20;// глубина логгирования состояния узла
-        int ATTEMPTS = 4;// максимальное число попыток пинга, после которых узел считается недоступным
+        // глубина логгирования состояния узла
+        static int capacity = 20;
+        // максимальное число попыток пинга, после которых узел считается недоступным
+        int ATTEMPTS = 4;
         public List<string> Results = new List<string>(capacity);
         public bool wasOffline = false;
         public DateTime Alarmtime = DateTime.Now;
