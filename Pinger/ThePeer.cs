@@ -21,6 +21,11 @@ namespace Pinger
         Ping PingSender = new Ping();
         Point prevMousePosition;
 
+        public string peerHostName;
+        public string peerHostStatus;
+        public string peerIpAddress;
+        public string peerComment;
+
         public int CompareTo(object o)
         {
             if (o is ThePeer peer)
@@ -29,11 +34,6 @@ namespace Pinger
             }
             else throw new ArgumentException("Некорректное значение параметра.");
         }
-
-        public string peerHostName;
-        public string peerHostStatus;
-        public string peerIpAddress;
-        public string peerComment;
 
         private void PeerControl_Load(object sender, EventArgs e)
         {
@@ -53,24 +53,21 @@ namespace Pinger
             if (Results.Count > 0)
             {
                 PeerHeader.Text = "[" + Results.Count + "] " + hostname;
-                PeerHeader.BackColor = Color.Salmon;
             }
-            else
+
+            try
             {
-                try
-                {
-                    PingSender.SendAsync(ip, hostname);
-                }
-                catch (InvalidOperationException)
-                {
-                    //  MessageBox.Show("Упс...");
-                }
-                catch (NullReferenceException)
-                {
-                    //  MessageBox.Show("Упс...");
-                }
-                PingSender.PingCompleted += new PingCompletedEventHandler(PingCompletedCallback);
+                PingSender.SendAsync(ip, hostname);
             }
+            catch (InvalidOperationException)
+            {
+                //  MessageBox.Show("Упс...");
+            }
+            catch (NullReferenceException)
+            {
+                //  MessageBox.Show("Упс...");
+            }
+            PingSender.PingCompleted += new PingCompletedEventHandler(PingCompletedCallback);
         }
         private void PingCompletedCallback(object sender, PingCompletedEventArgs e)
         {
@@ -81,9 +78,9 @@ namespace Pinger
                     case IPStatus.Success:
                     {
                         MainForm.failures[this.ParentForm.Controls.IndexOf(this)] = 0;
+                        PeerHeader.BackColor = Color.PaleGreen;
                         PeerStatus.Text = e.Reply.Address.ToString() + " - " + e.Reply.RoundtripTime.ToString() + " мс";
-                        PeerStatus.BackColor = Color.White;
-                            PeerHeader.BackColor = Color.PaleGreen;
+                        PeerStatus.BackColor = Color.White;                       
                         if (e.Reply.RoundtripTime > 500) //Если пинг более 500мс - следует обратить внимание (подкрасим оранжевым)
                         {
                             PeerStatus.BackColor = Color.Orange;
@@ -114,12 +111,13 @@ namespace Pinger
                     case IPStatus.DestinationHostUnreachable:
                     {
                         PeerStatus.Text = peerIpAddress + " - DestHostUnreachable";
-                        PeerStatus.BackColor = Color.Pink;
+                        PeerHeader.BackColor = Color.Salmon;
+                        PeerStatus.BackColor = Color.Pink;        
                         MainForm.failures[this.ParentForm.Controls.IndexOf(this)]++;
                         /*
-                            * Array.IndexOf(this.ParentForm.MdiChildren, this) 
-                            * Это индекс дочерней формы в массиве дочерних форм.
-                            */
+                            this.ParentForm.Controls.IndexOf(this)
+                            Это индекс контрола в массиве контролов формы.
+                        */
                         if (MainForm.failures[this.ParentForm.Controls.IndexOf(this)] == ATTEMPTS)
                         {
                             if (!wasOffline)
@@ -139,6 +137,7 @@ namespace Pinger
                     case IPStatus.DestinationNetworkUnreachable:
                     {
                         PeerStatus.Text = peerIpAddress + " - DestinationNetworkUnreachable";
+                        PeerHeader.BackColor = Color.Salmon;
                         PeerStatus.BackColor = Color.Pink;
                         MainForm.failures[this.ParentForm.Controls.IndexOf(this)]++;
                         if (MainForm.failures[this.ParentForm.Controls.IndexOf(this)] == ATTEMPTS)
@@ -160,6 +159,7 @@ namespace Pinger
                     case IPStatus.HardwareError:
                     {
                         PeerStatus.Text = peerIpAddress + " - HardwareError";
+                        PeerHeader.BackColor = Color.Salmon;
                         PeerStatus.BackColor = Color.Pink;
                         MainForm.failures[this.ParentForm.Controls.IndexOf(this)]++;
                         if (MainForm.failures[this.ParentForm.Controls.IndexOf(this)] == ATTEMPTS)
@@ -181,6 +181,7 @@ namespace Pinger
                     case IPStatus.TimedOut:
                     {
                         PeerStatus.Text = peerIpAddress + " - TimedOut";
+                        PeerHeader.BackColor = Color.Salmon;
                         PeerStatus.BackColor = Color.Pink;
                         MainForm.failures[this.ParentForm.Controls.IndexOf(this)]++;
                         if (MainForm.failures[this.ParentForm.Controls.IndexOf(this)] == ATTEMPTS)
@@ -273,38 +274,12 @@ namespace Pinger
             HistoryForm.Text = this.PeerHeader.Text + " - история";
             for (int i = 0; i < Results.Count; i++)
             {
-                // HistoryForm.Owner = this;
                 HistoryForm.richTextBox1.Text += Results.ToArray()[i] + "\r\n";
             }
             HistoryForm.StartPosition = FormStartPosition.CenterParent;
             HistoryForm.ShowDialog();
         }
-        private void историяToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ShowHistory();
-        }
-        private void очиститьИсториюToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Results.Count > 0)
-            {
-                Results.Clear();
-                string temp = PeerHeader.Text;
-                temp = temp.Substring(temp.IndexOf(" "));
-                PeerHeader.Text = temp;
-                PeerHeader.BackColor = Color.PaleGreen;
-            }
-        }
-        private void обменПакетамиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                System.Diagnostics.Process.Start("cmd.exe", "/C ping " + PeerStatus.Text.Substring(0, PeerStatus.Text.IndexOf(" ")) + " -t");
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                //пока игнорируем, ждем ответа от хоста
-            }
-        }
+       
         private void PingHeader_DoubleClick(object sender, EventArgs e)
         {
             ShowHistory();
@@ -365,25 +340,36 @@ namespace Pinger
                 prevMousePosition = p;
             }
         }
-        private void Remove_Click(object sender, EventArgs e)
+
+        private void ShowElementHistory_Click(object sender, EventArgs e)
         {
-            string message = $"Вы действительно хотите удалить элемент {this.peerHostName}? Восстановление будет невозможно.";
-            const string caption = "Удаление элемента";
-            var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                List<PeerInfo> peers = PeerFileHandler.ReadPeers("Peers.csv");
-                peers.Remove(peers.Find(p => p.Name == (this.peerHostName)));
-                PeerFileHandler.SavePeers(peers, "Peers.csv");
-
-                MainForm mf = (Pinger.MainForm)this.ParentForm;
-
-                this.Parent.Controls.Remove(this);
-
-                MainForm.fitPeers(mf);
-            }       
+            ShowHistory();
         }
-        private void Edit_Click(object sender, EventArgs e)
+        private void ClearLog_Click(object sender, EventArgs e)
+        {
+            if (Results.Count > 0)
+            {
+                Results.Clear();
+                string temp = PeerHeader.Text;
+                temp = temp.Substring(temp.IndexOf(" "));
+                PeerHeader.Text = temp;
+                PeerHeader.BackColor = Color.PaleGreen;
+            }
+        }
+
+        private void ConsolePing_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("cmd.exe", "/C ping " + PeerStatus.Text.Substring(0, PeerStatus.Text.IndexOf(" ")) + " -t");
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                //пока игнорируем, ждем ответа от хоста
+            }
+        }
+
+        private void EditElement_Click(object sender, EventArgs e)
         {
             PeerEditForm pef = new PeerEditForm();
             pef.Text = "Редактирование узла";
@@ -391,7 +377,24 @@ namespace Pinger
             pef.IP_text.Text = this.peerIpAddress;
             pef.location_text.Text = this.peerComment;
             pef.StartPosition = FormStartPosition.CenterParent;
-            pef.ShowDialog(this);          
+            pef.ShowDialog(this);
+        }
+
+        private void RemoveElement_Click(object sender, EventArgs e)
+        {
+            string message = $"Вы действительно хотите удалить элемент {this.peerHostName}? Восстановление будет невозможно.";
+            const string caption = "Удаление элемента";
+            const string filename = "Peers.txt";
+            var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                MainForm mf = (Pinger.MainForm)this.ParentForm;
+                List<PeerInfo> peers = PeerFileHandler.ReadPeers(filename);
+                peers.Remove(peers.Find(p => p.Name == (this.peerHostName)));
+                PeerFileHandler.SavePeers(peers, filename);
+                this.Parent.Controls.Remove(this);
+                MainForm.ArrangeElements(mf);
+            }
         }
     }
 }

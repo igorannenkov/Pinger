@@ -8,7 +8,7 @@ namespace Pinger
 {
     public partial class PeerEditForm : Form
     {
-        public bool isIP(string s) //проверка является ли строка ip адресом (вместо рег выражения)
+        public bool IsIP(string s) //проверка является ли строка ip адресом (вместо рег выражения)
         {
             string[] temp = s.Split('.');
             if (temp.Length != 4)
@@ -39,10 +39,10 @@ namespace Pinger
         }
         private void Edit_IP_button_Click(object sender, EventArgs e)
         {
-            if (hostname_text.Text.ToString() != "" && location_text.Text.ToString() != "" && isIP(IP_text.Text))
+            if (hostname_text.Text.ToString() != "" && location_text.Text.ToString() != "" && IsIP(IP_text.Text))
             {
                 ThePeer peer = this.Owner.ActiveControl as ThePeer;
-
+                List<PeerInfo> peersToSave = new List<PeerInfo>();
                 //если меняется IP - очищаем лог.
                 if (peer.peerIpAddress != this.IP_text.Text)
                 {
@@ -56,8 +56,6 @@ namespace Pinger
                 peer.ToolTip.SetToolTip(peer.PeerHeader, peer.peerComment);
                 peer.ToolTip.SetToolTip(peer.PeerStatus, peer.peerComment);
 
-                List<PeerInfo> peersToSave = new List<PeerInfo>();                  
-
                 for (int i = 0; i < this.Owner.Controls.Count; i++)
                 {
                     if (this.Owner.Controls[i] is ThePeer)
@@ -70,7 +68,8 @@ namespace Pinger
                 }
 
                 peersToSave.Sort();
-                PeerFileHandler.SavePeers(peersToSave, "Peers.csv");
+                PeerFileHandler.SavePeers(peersToSave, "Peers.txt");
+                MainForm.ArrangeElements((Pinger.MainForm)this.Owner);
                 this.Close();
             }
             else
@@ -81,7 +80,7 @@ namespace Pinger
                     {
                         hostname_text.BackColor = Color.Red;
                     }
-                    if (IP_text.Text == "" || !isIP(IP_text.Text))
+                    if (IP_text.Text == "" || !IsIP(IP_text.Text))
                     {
                         IP_text.BackColor = Color.Red;
                     }

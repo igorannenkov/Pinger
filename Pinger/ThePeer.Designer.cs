@@ -32,12 +32,12 @@ namespace Pinger
             this.components = new System.ComponentModel.Container();
             this.PeerHeader = new System.Windows.Forms.Label();
             this.PeerMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.историяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ShowElementHistory = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.очиститьИсториюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.обменПакетамиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Edit = new System.Windows.Forms.ToolStripMenuItem();
-            this.Remove = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClearLog = new System.Windows.Forms.ToolStripMenuItem();
+            this.ConsolePing = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditElement = new System.Windows.Forms.ToolStripMenuItem();
+            this.RemoveElement = new System.Windows.Forms.ToolStripMenuItem();
             this.PeerStatus = new System.Windows.Forms.Label();
             this.MainTimer = new System.Windows.Forms.Timer(this.components);
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
@@ -63,54 +63,54 @@ namespace Pinger
             // PeerMenu
             // 
             this.PeerMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.историяToolStripMenuItem,
+            this.ShowElementHistory,
             this.toolStripSeparator1,
-            this.очиститьИсториюToolStripMenuItem,
-            this.обменПакетамиToolStripMenuItem,
-            this.Edit,
-            this.Remove});
+            this.ClearLog,
+            this.ConsolePing,
+            this.EditElement,
+            this.RemoveElement});
             this.PeerMenu.Name = "PeerMenu";
-            this.PeerMenu.Size = new System.Drawing.Size(179, 120);
+            this.PeerMenu.Size = new System.Drawing.Size(177, 120);
             // 
-            // историяToolStripMenuItem
+            // ShowElementHistory
             // 
-            this.историяToolStripMenuItem.Name = "историяToolStripMenuItem";
-            this.историяToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.историяToolStripMenuItem.Text = "История...";
-            this.историяToolStripMenuItem.Click += new System.EventHandler(this.историяToolStripMenuItem_Click);
+            this.ShowElementHistory.Name = "ShowElementHistory";
+            this.ShowElementHistory.Size = new System.Drawing.Size(176, 22);
+            this.ShowElementHistory.Text = "История...";
+            this.ShowElementHistory.Click += new System.EventHandler(this.ShowElementHistory_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(173, 6);
             // 
-            // очиститьИсториюToolStripMenuItem
+            // ClearLog
             // 
-            this.очиститьИсториюToolStripMenuItem.Name = "очиститьИсториюToolStripMenuItem";
-            this.очиститьИсториюToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.очиститьИсториюToolStripMenuItem.Text = "Очистить историю";
-            this.очиститьИсториюToolStripMenuItem.Click += new System.EventHandler(this.очиститьИсториюToolStripMenuItem_Click);
+            this.ClearLog.Name = "ClearLog";
+            this.ClearLog.Size = new System.Drawing.Size(176, 22);
+            this.ClearLog.Text = "Очистить лог";
+            this.ClearLog.Click += new System.EventHandler(this.ClearLog_Click);
             // 
-            // обменПакетамиToolStripMenuItem
+            // ConsolePing
             // 
-            this.обменПакетамиToolStripMenuItem.Name = "обменПакетамиToolStripMenuItem";
-            this.обменПакетамиToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.обменПакетамиToolStripMenuItem.Text = "Обмен пакетами...";
-            this.обменПакетамиToolStripMenuItem.Click += new System.EventHandler(this.обменПакетамиToolStripMenuItem_Click);
+            this.ConsolePing.Name = "ConsolePing";
+            this.ConsolePing.Size = new System.Drawing.Size(176, 22);
+            this.ConsolePing.Text = "Обмен пакетами...";
+            this.ConsolePing.Click += new System.EventHandler(this.ConsolePing_Click);
             // 
-            // Edit
+            // EditElement
             // 
-            this.Edit.Name = "Edit";
-            this.Edit.Size = new System.Drawing.Size(178, 22);
-            this.Edit.Text = "Редактировать";
-            this.Edit.Click += new System.EventHandler(this.Edit_Click);
+            this.EditElement.Name = "EditElement";
+            this.EditElement.Size = new System.Drawing.Size(176, 22);
+            this.EditElement.Text = "Редактировать";
+            this.EditElement.Click += new System.EventHandler(this.EditElement_Click);
             // 
-            // Remove
+            // RemoveElement
             // 
-            this.Remove.Name = "Remove";
-            this.Remove.Size = new System.Drawing.Size(178, 22);
-            this.Remove.Text = "Удалить";
-            this.Remove.Click += new System.EventHandler(this.Remove_Click);
+            this.RemoveElement.Name = "RemoveElement";
+            this.RemoveElement.Size = new System.Drawing.Size(176, 22);
+            this.RemoveElement.Text = "Удалить";
+            this.RemoveElement.Click += new System.EventHandler(this.RemoveElement_Click);
             // 
             // PeerStatus
             // 
@@ -155,12 +155,12 @@ namespace Pinger
         public System.Windows.Forms.Label PeerStatus;
         private System.Windows.Forms.Timer MainTimer;
         private System.Windows.Forms.ContextMenuStrip PeerMenu;
-        private System.Windows.Forms.ToolStripMenuItem историяToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ShowElementHistory;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem очиститьИсториюToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem обменПакетамиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem Edit;
-        private System.Windows.Forms.ToolStripMenuItem Remove;
+        private System.Windows.Forms.ToolStripMenuItem ClearLog;
+        private System.Windows.Forms.ToolStripMenuItem ConsolePing;
+        private System.Windows.Forms.ToolStripMenuItem EditElement;
+        private System.Windows.Forms.ToolStripMenuItem RemoveElement;
         public System.Windows.Forms.ToolTip ToolTip;
     }
 }

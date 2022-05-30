@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace Pinger
 {
@@ -27,6 +28,18 @@ namespace Pinger
                 throw new ArgumentException("Некорректное значение параметра.");
             }
             return Name.CompareTo(p.Name);
-        }        
+        }
+
+        public static bool HasDuplicate(List<PeerInfo> values, string name)
+        {
+            for (int i = 0; i < values.Count; i++)
+            {
+                if (values[i].Name == name)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

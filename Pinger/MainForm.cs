@@ -17,13 +17,13 @@ namespace Pinger
         }
         private void AddPeers()
         {
-            if (!File.Exists("Peers.csv"))
+            if (!File.Exists("Peers.txt"))
             {
-                MessageBox.Show("В каталоге с программой отсутствует необходимый для работы файл Peers.csv. Приложение будет закрыто.", "Ошибка");
+                MessageBox.Show("В каталоге с программой отсутствует необходимый для работы файл Peers.txt. Приложение будет закрыто.", "Ошибка");
                 Application.Exit();
             }
             this.WindowState = FormWindowState.Maximized;
-            List<PeerInfo> peers = PeerFileHandler.ReadPeers("Peers.csv");
+            List<PeerInfo> peers = PeerFileHandler.ReadPeers("Peers.txt");
             for (int i = 0; i < peers.Count; i++)
             {
                 ThePeer pc = new ThePeer();
@@ -56,116 +56,140 @@ namespace Pinger
                 this.Visible = true; 
                 this.WindowState = FormWindowState.Maximized;
             }
-        }     
-       
-        private void перечитатьУзлыToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Restart();
-        } 
-        private void выходToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            const string message ="Вы уверены?";
-            const string caption = "Выход из программы";
-            var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
-        }
-        private void справкаToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            AboutBox about = new AboutBox();
-            about.StartPosition = FormStartPosition.CenterScreen;
-            about.ShowDialog();
-        }
-
-        private void выровнятьПоСеткеToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MainForm.fitPeers(this);
-        }
-
-        private void SaveConfig_Click(object sender, EventArgs e)
+        }            
+ 
+        private void Savelements(MainForm form)
         {
             List<PeerInfo> peersToSave = new List<PeerInfo>();
-            List<string> hostNames = new List<string>(Controls.Count);
-            Control[] myControls = new Control[Controls.Count];
+            List<Control> Controls = new List<Control>();
 
-            for (int i = 0; i < Controls.Count; i++)
+            for (int i = 0; i < form.Controls.Count; i++)
             {
-                if (Controls[i] is ThePeer)
+                if (form.Controls[i] is ThePeer)
                 {
-                    hostNames.Add((Controls[i] as ThePeer).peerHostName);
+                    Controls.Add(form.Controls[i]);
                 }
             }
 
-            hostNames.Sort();
-            
+            Controls.Sort();
+
             for (int i = 0; i < Controls.Count; i++)
             {
-                myControls[i] = this.Controls.Find(hostNames[i], true).Single();
-            }
-            
-            for (int i = 0; i < myControls.Length; i++)
-            {
-                if(myControls[i] is ThePeer)
-                {
-                    peersToSave.Add(new PeerInfo((myControls[i] as ThePeer).peerHostName,
-                                                 (myControls[i] as ThePeer).peerIpAddress,
-                                                 (myControls[i] as ThePeer).peerComment,
-                                                 (myControls[i].Location)));
-                }
+                
+                    peersToSave.Add(new PeerInfo((Controls[i] as ThePeer).peerHostName,
+                                                 (Controls[i] as ThePeer).peerIpAddress,
+                                                 (Controls[i] as ThePeer).peerComment,
+                                                 (Controls[i].Location)));
             }
 
-            PeerFileHandler.SavePeers(peersToSave, "Peers.csv");
+            PeerFileHandler.SavePeers(peersToSave, "Peers.txt");
         }
-        private void LoadConfig_Click(object sender, EventArgs e)
+        private void LoadElementsFromFile(MainForm form)
         {
-            List<string> hostNames = new List<string>(Controls.Count);
+            List<ThePeer> myControls = new List<ThePeer>();
 
-            for (int i = 0; i < Controls.Count; i++)
+            for (int i = 0; i < form.Controls.Count; i++)
             {
-                if (Controls[i] is ThePeer)
+                if (form.Controls[i] is ThePeer)
                 {
-                    hostNames.Add((Controls[i] as ThePeer).peerHostName);
+                    myControls.Add((ThePeer)form.Controls[i]);
                 }
             }
+            myControls.Sort();
+            List<PeerInfo> peers = PeerFileHandler.ReadPeers("Peers.txt");
 
-            hostNames.Sort();
 
-            Control[] myControls = new Control[Controls.Count];
-
-            for (int i = 0; i < Controls.Count; i++)
-            {
-                myControls[i] = this.Controls.Find(hostNames[i], true).Single();
-            }
-
-            List<PeerInfo> peers = PeerFileHandler.ReadPeers("Peers.csv");
-
-            Controls.Clear();
-
-            for (int i = 0; i < myControls.Length; i++)
+            for (int i = 0; i < myControls.Count; i++)
             {
                 myControls[i].Location = peers[i].Location;
-                this.Controls.Add(myControls[i]);
             }
-        }
-        private void узлыToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("notepad.exe", "Peers.csv");
+
         }
 
-        private void добавитьЭлементToolStripMenuItem_Click(object sender, EventArgs e)
+        public static void ArrangeElements(MainForm form)
         {
-            //TODO добавить элемент, выполнить сортировку, сохранить в файл, отобразить в окне и выровнять по сетке автоматически
-            //при добавлении окрасить цветом для обозначения местоположения
+            //int height = form.Height - 125;
 
-            AddPeerForm apf = new AddPeerForm();
-            apf.Text = "Добавление элемента";
-            apf.StartPosition = FormStartPosition.CenterParent;
-            apf.ShowDialog(this);
-        }
-        public static void fitPeers(MainForm form)
-        {
+            //List<ThePeer> peers = new List<ThePeer>();
+
+            //for (int i = 0; i < form.Controls.Count; i++)
+            //{
+            //    if (form.Controls[i] is ThePeer)
+            //    {
+            //        peers.Add((ThePeer)form.Controls[i]);
+            //    }
+            //}
+
+            //peers.Sort();
+
+            //form.Controls.Clear();
+
+            //for (int i = 0, x = 5, y = 5, prevX = x; i <= peers.Count - 1; i++)
+            //{
+            //    bool firstline = false;
+
+            //    if (i == 0)
+            //    {
+            //        peers[i].Location = new Point(x, y);
+            //        form.Controls.Add(peers[i]);
+            //        continue;
+            //    }
+
+            //    if (i == peers.Count - 1)
+            //    {
+            //        if ((peers[i]).peerHostName.Contains(((peers[i - 1]).peerHostName)))
+            //        {
+            //            x += 145;
+            //            peers[i].Location = new Point(x, y);
+            //            form.Controls.Add(peers[i]);
+            //            x = prevX;
+            //        }
+            //        else
+            //        {
+            //            y += 40;
+            //            peers[i].Location = new Point(x, y);
+            //            form.Controls.Add(peers[i]);
+            //        }
+            //        continue;
+            //    }
+
+            //    if ((y > height) && !((peers[i]).peerHostName.Contains(((peers[i - 1]).peerHostName))))
+            //    {
+            //        x += 300;
+            //        prevX = x;
+            //        y = 5;
+            //        firstline = true;
+            //    }
+
+            //    try
+            //    {
+            //        if (((peers[i]).peerHostName.Contains(((peers[i - 1]).peerHostName))))
+            //        {
+            //            x += 145;
+            //            peers[i].Location = new Point(x, y);
+            //            form.Controls.Add(peers[i]);
+            //            x = prevX;
+            //        }
+            //        else
+            //        {
+            //            if (firstline)
+            //            {
+            //                peers[i].Location = new Point(x, y);
+            //                form.Controls.Add(peers[i]);
+            //            }
+            //            else
+            //            {
+            //                y += 40;
+            //                peers[i].Location = new Point(x, y);
+            //                form.Controls.Add(peers[i]);
+            //            }
+            //        }
+            //    }
+            //    catch (IndexOutOfRangeException exp)
+            //    {
+            //        MessageBox.Show(exp.Message);
+            //    }
+            //}
 
             int height = form.Height - 125;
 
@@ -181,7 +205,7 @@ namespace Pinger
 
             peers.Sort();
 
-            form.Controls.Clear();
+          //  form.Controls.Clear();
 
             for (int i = 0, x = 5, y = 5, prevX = x; i <= peers.Count - 1; i++)
             {
@@ -190,7 +214,7 @@ namespace Pinger
                 if (i == 0)
                 {
                     peers[i].Location = new Point(x, y);
-                    form.Controls.Add(peers[i]);
+                  //  form.Controls.Add(peers[i]);
                     continue;
                 }
 
@@ -200,14 +224,14 @@ namespace Pinger
                     {
                         x += 145;
                         peers[i].Location = new Point(x, y);
-                        form.Controls.Add(peers[i]);
+                       // form.Controls.Add(peers[i]);
                         x = prevX;
                     }
                     else
                     {
                         y += 40;
                         peers[i].Location = new Point(x, y);
-                        form.Controls.Add(peers[i]);
+                      //  form.Controls.Add(peers[i]);
                     }
                     continue;
                 }
@@ -226,7 +250,7 @@ namespace Pinger
                     {
                         x += 145;
                         peers[i].Location = new Point(x, y);
-                        form.Controls.Add(peers[i]);
+                       // form.Controls.Add(peers[i]);
                         x = prevX;
                     }
                     else
@@ -234,13 +258,13 @@ namespace Pinger
                         if (firstline)
                         {
                             peers[i].Location = new Point(x, y);
-                            form.Controls.Add(peers[i]);
+                           // form.Controls.Add(peers[i]);
                         }
                         else
                         {
                             y += 40;
                             peers[i].Location = new Point(x, y);
-                            form.Controls.Add(peers[i]);
+                          //  form.Controls.Add(peers[i]);
                         }
                     }
                 }
@@ -251,5 +275,55 @@ namespace Pinger
             }
         }
 
+        private void AddElement_Click(object sender, EventArgs e)
+        {
+            AddPeerForm apf = new AddPeerForm();
+            apf.Text = "Добавление элемента";
+            apf.StartPosition = FormStartPosition.CenterParent;
+            apf.ShowDialog(this);
+        }
+
+        private void SaveElements_Click(object sender, EventArgs e)
+        {
+            Savelements(this);
+        }
+
+        private void LoadElements_Click(object sender, EventArgs e)
+        {
+            LoadElementsFromFile(this);
+        }
+
+        private void OrganizeElements_Click(object sender, EventArgs e)
+        {
+            ArrangeElements(this);
+        }
+
+        private void OpenSourceFile_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("notepad.exe", "Peers.txt");
+        }
+
+        private void About_Click(object sender, EventArgs e)
+        {
+            AboutBox about = new AboutBox();
+            about.StartPosition = FormStartPosition.CenterScreen;
+            about.ShowDialog();
+        }
+
+        private void RestartApplication_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+
+        private void ExitApplication_Click(object sender, EventArgs e)
+        {
+            const string message = "Вы уверены?";
+            const string caption = "Выход из программы";
+            var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
     }
 }

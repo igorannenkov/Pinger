@@ -43,14 +43,14 @@ namespace Pinger
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(641, 249);
+            this.textBox1.Size = new System.Drawing.Size(673, 249);
             this.textBox1.TabIndex = 0;
             this.textBox1.TabStop = false;
             this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
             // OK_Btn
             // 
-            this.OK_Btn.Location = new System.Drawing.Point(544, 296);
+            this.OK_Btn.Location = new System.Drawing.Point(576, 296);
             this.OK_Btn.Name = "OK_Btn";
             this.OK_Btn.Size = new System.Drawing.Size(112, 27);
             this.OK_Btn.TabIndex = 1;
@@ -73,15 +73,15 @@ namespace Pinger
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 25);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 13);
+            this.label2.Size = new System.Drawing.Size(71, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Версия 1.2";
+            this.label2.Text = "Версия 1.2.1";
             // 
             // AboutBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(668, 331);
+            this.ClientSize = new System.Drawing.Size(700, 331);
             this.ControlBox = false;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

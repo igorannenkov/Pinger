@@ -15,7 +15,7 @@ namespace Pinger
         {
             InitializeComponent();
         }
-        public bool isIP(string s) //проверка является ли строка ip адресом 
+        public bool IsIP(string s) //проверка является ли строка ip адресом 
         {
             string[] temp = s.Split('.');
             if (temp.Length != 4)
@@ -43,25 +43,32 @@ namespace Pinger
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            List<PeerInfo> peers = PeerFileHandler.ReadPeers("Peers.csv");
-            if (hostname_text.Text.ToString() != "" && location_text.Text.ToString() != "" && isIP(IP_text.Text))
+            
+            if (hostname_text.Text.ToString() != "" && location_text.Text.ToString() != "" && IsIP(IP_text.Text))
             {
-                peers.Add(new PeerInfo(hostname_text.Text, IP_text.Text, location_text.Text, new Point()));
-                peers = peers.Distinct().ToList();
-                peers.Sort();
-                PeerFileHandler.SavePeers(peers, "Peers.csv");
+                List<PeerInfo> peers = PeerFileHandler.ReadPeers("Peers.txt");
+
+                if (PeerInfo.HasDuplicate(peers, hostname_text.Text))
+                {
+                    MessageBox.Show("Элемент с таким именем существует. Введите другое имя.", "Ошибка");
+                    return;
+                }
+
+
 
                 ThePeer peer = new ThePeer();
+                
                 peer.peerHostName = hostname_text.Text;
                 peer.peerIpAddress = IP_text.Text;
-                
+                peer.peerComment = location_text.Text;
                 this.Owner.Controls.Add(peer);
                 MainForm.failures.Add(0);
-
-                MainForm.fitPeers((Pinger.MainForm)this.Owner);
-                
+                MainForm.ArrangeElements((Pinger.MainForm)this.Owner);
+                peers.Add(new PeerInfo(hostname_text.Text, IP_text.Text, location_text.Text, new Point()));
+                peers = (peers.GroupBy(x => x.Name).Select(y => y.First())).ToList();  //peers.Distinct().ToList();
+                peers.Sort();
+                PeerFileHandler.SavePeers(peers, "Peers.txt");
                 this.Close();
-    
             }
             else
             {          
@@ -71,7 +78,7 @@ namespace Pinger
                     {
                         hostname_text.BackColor = Color.Red;
                     }
-                    if (IP_text.Text == "" || !isIP(IP_text.Text))
+                    if (IP_text.Text == "" || !IsIP(IP_text.Text))
                     {
                         IP_text.BackColor = Color.Red;
                     }
