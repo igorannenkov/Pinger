@@ -121,3 +121,19 @@ C:\Users\Игорь\Desktop\Pinger Net35\Pinger\obj\Debug\Pinger.csproj.CoreComp
 C:\Users\Игорь\Desktop\Pinger Net35\Pinger\obj\Debug\Pinger.exe
 C:\Users\Игорь\Desktop\Pinger Net35\Pinger\obj\Debug\Pinger.pdb
 C:\Users\Игорь\Desktop\Pinger Net35\Pinger\obj\Debug\Pinger.csproj.AssemblyReference.cache
+C:\Users\Игорь\Desktop\Новая папка (3)\Pinger\Pinger\bin\Debug\Pinger.exe.config
+C:\Users\Игорь\Desktop\Новая папка (3)\Pinger\Pinger\bin\Debug\Pinger.exe
+C:\Users\Игорь\Desktop\Новая папка (3)\Pinger\Pinger\bin\Debug\Pinger.pdb
+C:\Users\Игорь\Desktop\Новая папка (3)\Pinger\Pinger\obj\Debug\Pinger.csproj.AssemblyReference.cache
+C:\Users\Игорь\Desktop\Новая папка (3)\Pinger\Pinger\obj\Debug\Pinger.csproj.SuggestedBindingRedirects.cache
+C:\Users\Игорь\Desktop\Новая папка (3)\Pinger\Pinger\obj\Debug\Pinger.AboutBox.resources
+C:\Users\Игорь\Desktop\Новая папка (3)\Pinger\Pinger\obj\Debug\Pinger.AddPeerForm.resources
+C:\Users\Игорь\Desktop\Новая папка (3)\Pinger\Pinger\obj\Debug\Pinger.MainForm.resources
+C:\Users\Игорь\Desktop\Новая папка (3)\Pinger\Pinger\obj\Debug\Pinger.ThePeer.resources
+C:\Users\Игорь\Desktop\Новая папка (3)\Pinger\Pinger\obj\Debug\Pinger.PeerEditForm.resources
+C:\Users\Игорь\Desktop\Новая папка (3)\Pinger\Pinger\obj\Debug\Pinger.PeerLogForm.resources
+C:\Users\Игорь\Desktop\Новая папка (3)\Pinger\Pinger\obj\Debug\Pinger.Properties.Resources.resources
+C:\Users\Игорь\Desktop\Новая папка (3)\Pinger\Pinger\obj\Debug\Pinger.csproj.GenerateResource.cache
+C:\Users\Игорь\Desktop\Новая папка (3)\Pinger\Pinger\obj\Debug\Pinger.csproj.CoreCompileInputs.cache
+C:\Users\Игорь\Desktop\Новая папка (3)\Pinger\Pinger\obj\Debug\Pinger.exe
+C:\Users\Игорь\Desktop\Новая папка (3)\Pinger\Pinger\obj\Debug\Pinger.pdb
