@@ -75,7 +75,7 @@ namespace Pinger
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Версия 1.2.1";
+            this.label2.Text = "Версия 1.2.2";
             // 
             // AboutBox
             // 

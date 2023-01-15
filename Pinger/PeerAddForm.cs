@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace Pinger
 {
@@ -15,35 +16,11 @@ namespace Pinger
         {
             InitializeComponent();
         }
-        public bool IsIP(string s)
-        {
-            string[] temp = s.Split('.');
-            if (temp.Length != 4)
-            { return false; }
-            else
-            {
-                bool A = int.TryParse(temp[0], out int a);
-                bool B = int.TryParse(temp[1], out int b);
-                bool C = int.TryParse(temp[2], out int c);
-                bool D = int.TryParse(temp[3], out int d);
-                if (!A || !B || !C || !D)
-                {
-                    return false;
-                }
-                else
-                {
-                    if ((a <= 255 && a>= 0) && (b <= 255 && b >= 0) && (c <= 255 && c >= 0) && (d <= 255 && d >= 0))
-                    {
-                        return true;
-                    }
-                }                 
-            }
-            return false;
-        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             
-            if (hostname_text.Text.ToString() != "" && location_text.Text.ToString() != "" && IsIP(IP_text.Text))
+            if (hostname_text.Text.ToString() != "" && location_text.Text.ToString() != "" && IPAddressValidator.ValidateFromString(IP_text.Text))
             {
                 List<PeerInfo> peers = PeerFileHandler.ReadPeers("Peers.txt");
 
@@ -75,7 +52,7 @@ namespace Pinger
                     {
                         hostname_text.BackColor = Color.Red;
                     }
-                    if (IP_text.Text == "" || !IsIP(IP_text.Text))
+                    if (IP_text.Text == "" || !IPAddressValidator.ValidateFromString(IP_text.Text))
                     {
                         IP_text.BackColor = Color.Red;
                     }
