@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.hostname_text = new System.Windows.Forms.TextBox();
             this.location_text = new System.Windows.Forms.TextBox();
@@ -35,11 +36,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.addHostnameErrProv = new System.Windows.Forms.ErrorProvider(this.components);
+            this.addIpAddrErrProv = new System.Windows.Forms.ErrorProvider(this.components);
+            this.addLocationErrProv = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.addHostnameErrProv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addIpAddrErrProv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addLocationErrProv)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(155, 130);
+            this.button1.Location = new System.Drawing.Point(168, 131);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(110, 25);
             this.button1.TabIndex = 4;
@@ -49,22 +56,22 @@
             // 
             // hostname_text
             // 
-            this.hostname_text.Location = new System.Drawing.Point(15, 25);
+            this.hostname_text.Location = new System.Drawing.Point(12, 25);
             this.hostname_text.Name = "hostname_text";
             this.hostname_text.Size = new System.Drawing.Size(135, 20);
             this.hostname_text.TabIndex = 1;
             // 
             // location_text
             // 
-            this.location_text.Location = new System.Drawing.Point(15, 75);
+            this.location_text.Location = new System.Drawing.Point(12, 75);
             this.location_text.Multiline = true;
             this.location_text.Name = "location_text";
-            this.location_text.Size = new System.Drawing.Size(250, 50);
+            this.location_text.Size = new System.Drawing.Size(266, 50);
             this.location_text.TabIndex = 3;
             // 
             // IP_text
             // 
-            this.IP_text.Location = new System.Drawing.Point(155, 25);
+            this.IP_text.Location = new System.Drawing.Point(168, 25);
             this.IP_text.Name = "IP_text";
             this.IP_text.Size = new System.Drawing.Size(110, 20);
             this.IP_text.TabIndex = 2;
@@ -81,7 +88,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 58);
+            this.label2.Location = new System.Drawing.Point(12, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(160, 13);
             this.label2.TabIndex = 5;
@@ -90,17 +97,35 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(152, 9);
+            this.label3.Location = new System.Drawing.Point(165, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(50, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "IP адрес";
             // 
+            // addHostnameErrProv
+            // 
+            this.addHostnameErrProv.BlinkRate = 50;
+            this.addHostnameErrProv.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.addHostnameErrProv.ContainerControl = this;
+            // 
+            // addIpAddrErrProv
+            // 
+            this.addIpAddrErrProv.BlinkRate = 50;
+            this.addIpAddrErrProv.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.addIpAddrErrProv.ContainerControl = this;
+            // 
+            // addLocationErrProv
+            // 
+            this.addLocationErrProv.BlinkRate = 50;
+            this.addLocationErrProv.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.addLocationErrProv.ContainerControl = this;
+            // 
             // AddPeerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 161);
+            this.ClientSize = new System.Drawing.Size(300, 161);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -114,6 +139,9 @@
             this.Name = "AddPeerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Добавление элемента";
+            ((System.ComponentModel.ISupportInitialize)(this.addHostnameErrProv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addIpAddrErrProv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addLocationErrProv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,5 +156,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ErrorProvider addHostnameErrProv;
+        private System.Windows.Forms.ErrorProvider addIpAddrErrProv;
+        private System.Windows.Forms.ErrorProvider addLocationErrProv;
     }
 }

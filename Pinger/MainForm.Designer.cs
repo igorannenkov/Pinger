@@ -157,7 +157,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Мониторинг доступности сетевого оборудования 1.2.2";
+            this.Text = "Мониторинг доступности сетевого оборудования 1.2.3";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.MainMenu.ResumeLayout(false);
             this.ResumeLayout(false);

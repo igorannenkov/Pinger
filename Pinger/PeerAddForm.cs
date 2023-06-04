@@ -20,7 +20,7 @@ namespace Pinger
         private void button1_Click(object sender, EventArgs e)
         {
             
-            if (hostname_text.Text.ToString() != "" && location_text.Text.ToString() != "" && IPAddressValidator.ValidateFromString(IP_text.Text))
+            if (hostname_text.Text != "" && location_text.Text != "" && IPAddrVerificator.Verified(IP_text.Text))
             {
                 List<PeerInfo> peers = PeerFileHandler.ReadPeers("Peers.txt");
 
@@ -45,28 +45,29 @@ namespace Pinger
             }
             else
             {
-                // подсвечиваем некорректно заполненные поля, "моргаем" 3 раза
-                for (int i = 0; i < 3; i++) 
+                if (hostname_text.Text == string.Empty)
                 {
-                    if (hostname_text.Text == "")
-                    {
-                        hostname_text.BackColor = Color.Red;
-                    }
-                    if (IP_text.Text == "" || !IPAddressValidator.ValidateFromString(IP_text.Text))
-                    {
-                        IP_text.BackColor = Color.Red;
-                    }
-                    if (location_text.Text == "")
-                    {
-                        location_text.BackColor = Color.Red;
-                    }
-                    this.Refresh();
-                    Thread.Sleep(50);
-                    hostname_text.BackColor = Color.FromName("Window");
-                    IP_text.BackColor = Color.FromName("Window");
-                    location_text.BackColor = Color.FromName("Window");
-                    this.Refresh();
-                    Thread.Sleep(50);
+                    addHostnameErrProv.SetError(hostname_text, "Укажите наименование узла.");
+                }
+                else
+                {
+                    addHostnameErrProv.Clear();
+                }
+                if (location_text.Text == string.Empty)
+                {
+                    addLocationErrProv.SetError(location_text, "Укажите комментарий к узлу.");
+                }
+                else
+                {
+                    addLocationErrProv.Clear();
+                }
+                if (!IPAddrVerificator.Verified(IP_text.Text))
+                {
+                    addIpAddrErrProv.SetError(IP_text, "Введенные данные не являются IP адресом.");
+                }
+                else
+                {
+                    addIpAddrErrProv.Clear();
                 }
             }
         }    

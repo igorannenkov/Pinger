@@ -70,7 +70,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="IPAddressValidator.cs" />
+    <Compile Include="IPAddrVerificator.cs" />
     <Compile Include="PeerAddForm.cs">
       <SubType>Form</SubType>
     </Compile>

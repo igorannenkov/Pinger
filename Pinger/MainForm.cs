@@ -108,7 +108,12 @@ namespace Pinger
 
         public static void ArrangeElements(MainForm form)
         {
-            int height = form.Height - 125;
+            const int VERTICAL_SPACE_BOUND = 125;
+            const int COLUMN_INTERVAL = 145;
+            const int COLUMN_GROUP_INTERVAL = 40;
+            const int GROUP_OFFSET = 300;
+
+            int height = form.Height - VERTICAL_SPACE_BOUND;
             List<ThePeer> peers = new List<ThePeer>();
 
             for (int i = 0; i < form.Controls.Count; i++)
@@ -135,13 +140,13 @@ namespace Pinger
                 {
                     if ((peers[i]).peerHostName.Contains(((peers[i - 1]).peerHostName)))
                     {
-                        x += 145;
+                        x += COLUMN_INTERVAL;
                         peers[i].Location = new Point(x, y);
                         x = prevX;
                     }
                     else
                     {
-                        y += 40;
+                        y += COLUMN_GROUP_INTERVAL;
                         peers[i].Location = new Point(x, y);
                     }
                     continue;
@@ -149,7 +154,7 @@ namespace Pinger
 
                 if ((y > height) && !((peers[i]).peerHostName.Contains(((peers[i - 1]).peerHostName))))
                 {
-                    x += 300;
+                    x += GROUP_OFFSET;
                     prevX = x;
                     y = 5;
                     firstline = true;
@@ -159,7 +164,7 @@ namespace Pinger
                 {
                     if (((peers[i]).peerHostName.Contains(((peers[i - 1]).peerHostName))))
                     {
-                        x += 145;
+                        x += COLUMN_INTERVAL;
                         peers[i].Location = new Point(x, y);
                         x = prevX;
                     }
@@ -171,7 +176,7 @@ namespace Pinger
                         }
                         else
                         {
-                            y += 40;
+                            y += COLUMN_GROUP_INTERVAL;
                             peers[i].Location = new Point(x, y);
                         }
                     }

@@ -14,7 +14,7 @@ namespace Pinger
         }
         private void Edit_IP_button_Click(object sender, EventArgs e)
         {
-            if (hostname_text.Text.ToString() != "" && location_text.Text.ToString() != "" && IPAddressValidator.ValidateFromString(IP_text.Text))
+            if (hostname_text.Text != "" && location_text.Text != "" && IPAddrVerificator.Verified(IP_text.Text))
             {
                 ThePeer peer = this.Owner.ActiveControl as ThePeer;
                 List<PeerInfo> peersToSave = new List<PeerInfo>();
@@ -49,28 +49,29 @@ namespace Pinger
             }
             else
             {
-                //"мигаем" 3 раза, если что-то некорректно заполнено
-                for (int i = 0; i < 3; i++)
+                if (hostname_text.Text == string.Empty)
                 {
-                    if (hostname_text.Text == "")
-                    {
-                        hostname_text.BackColor = Color.Red;
-                    }
-                    if (IP_text.Text == "" || !IPAddressValidator.ValidateFromString(IP_text.Text))
-                    {
-                        IP_text.BackColor = Color.Red;
-                    }
-                    if (location_text.Text == "")
-                    {
-                        location_text.BackColor = Color.Red;
-                    }
-                    this.Refresh();
-                    Thread.Sleep(50);
-                    hostname_text.BackColor = Color.FromName("Window");
-                    IP_text.BackColor = Color.FromName("Window");
-                    location_text.BackColor = Color.FromName("Window");
-                    this.Refresh();
-                    Thread.Sleep(50);
+                    EditHostnameErrProv.SetError(hostname_text, "Укажите наименование узла.");
+                }
+                else
+                {
+                    EditHostnameErrProv.Clear();
+                }
+                if (location_text.Text == string.Empty)
+                {
+                   EditLocationErrProv.SetError(location_text, "Укажите комментарий к узлу.");
+                }
+                else
+                {
+                   EditLocationErrProv.Clear();
+                }
+                if (!IPAddrVerificator.Verified(IP_text.Text))
+                {
+                    EditIpAddrErrProv.SetError(IP_text, "Введенные данные не являются IP адресом.");
+                }
+                else
+                {
+                    EditIpAddrErrProv.Clear();
                 }
             }
         }

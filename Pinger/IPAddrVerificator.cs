@@ -8,9 +8,9 @@ using System.Net;
 
 namespace Pinger
 {
-    internal static class IPAddressValidator
+    internal static class IPAddrVerificator
     {
-        public static bool ValidateFromString(string testString)
+        public static bool Verified(string testString)
         {
             string pattern = "^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}$";
             return Regex.IsMatch(testString, pattern);
